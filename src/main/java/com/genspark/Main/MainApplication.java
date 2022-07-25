@@ -11,10 +11,10 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/View/second.fxml"));
-
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.initStyle(StageStyle.UNDECORATED);
+
         stage.setTitle("Airline Tracker v0.1");
         stage.setScene(scene);
         stage.show();
