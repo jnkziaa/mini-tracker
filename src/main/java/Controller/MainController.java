@@ -1,14 +1,21 @@
 package Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.DatePicker;
+import java.time.LocalDate;
 
-public class MainController {
-    @FXML
-    private Label welcomeText;
+public class MainController extends DatePicker {
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public DatePicker datePicker;
+
+
+    @FXML
+    public void getDate(ActionEvent event){
+        LocalDate date = datePicker.getValue();
+        System.out.println(date);
     }
+
+
 }
