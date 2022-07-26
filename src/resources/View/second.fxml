@@ -5,17 +5,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
-      <AnchorPane layoutY="-15.0" opacity="0.74" prefHeight="660.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css">
+      <AnchorPane layoutY="-15.0" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
          <children>
+            <Label layoutX="363.0" layoutY="33.0" prefHeight="63.0" prefWidth="486.0" text="Any flight worldwide, at your fingertips">
+               <font>
+                  <Font name="Arial Black" size="22.0" />
+               </font>
+            </Label>
             <TextArea editable="false" layoutX="136.0" layoutY="209.0" prefHeight="56.0" prefWidth="761.0" />
             <TextArea layoutX="898.0" layoutY="209.0" prefHeight="56.0" prefWidth="141.0" />
             <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="602.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/crash.png" />
+                  <Image url="@../Image/plane_up.png" />
                </image></ImageView>
+            <ImageView fitHeight="32.0" fitWidth="24.0" layoutX="905.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/clock.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
         <columnConstraints>
@@ -54,12 +64,44 @@
                      </font></Text>
                   <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="127.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/plane_up.png" />
+                        <Image url="@../Image/takeoff.png" />
                      </image>
                   </ImageView>
+                  <SplitPane dividerPositions="0.29797979797979796" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="72.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="6.0" prefWidth="35.0" rotate="180.0">
+                           <children>
+                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="251.0" layoutY="217.0" prefHeight="24.0" prefWidth="90.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="42.0" text="Gate">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                    </items>
+                  </SplitPane>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0">
                <children>
+                  <Label prefHeight="24.0" prefWidth="42.0" text="Gate">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                    <Label contentDisplay="CENTER" layoutX="184.0" layoutY="29.0" prefHeight="32.0" prefWidth="120.0" text="Arrival" wrapText="true">
                        <font>
                            <Font name="Berlin Sans FB" size="24.0" />
@@ -76,6 +118,34 @@
                         <Image url="@../Image/plane_down.png" />
                      </image>
                   </ImageView>
+                   <SplitPane dividerPositions="0.29797979797979796" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
+                       <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="72.0" />
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="6.0" prefWidth="35.0" rotate="180.0">
+                               <children>
+                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal">
+                                       <font>
+                                           <Font name="System Bold" size="14.0" />
+                                       </font>
+                                   </Label>
+                               </children>
+                           </AnchorPane>
+                       </items>
+                   </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="258.0" layoutY="217.0" prefHeight="24.0" prefWidth="90.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="42.0" text="Gate">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                     </items>
+                  </SplitPane>
                </children></AnchorPane>
         </items>
       </SplitPane>

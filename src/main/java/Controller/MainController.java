@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private String accessKey = "9cf202df7c52030fcbe351d02d9a1834";
+    private String accessKey = "9cf202df7c52030fcbe351d02d9a1834"; //access key duhh
 
         @FXML
         public DatePicker dpDate;
@@ -46,10 +46,11 @@ public class MainController implements Initializable {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                 LocalDate today = LocalDate.now();
-                setDisable(empty || item.isAfter(today) || item.isBefore(today));
+                setDisable(empty || item.isAfter(today) || item.isBefore(today)); //block any day that isnt today
             }
 
         };
+
 
         dpDate.setDayCellFactory(blockedDates);
     }
@@ -58,14 +59,11 @@ public class MainController implements Initializable {
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
         StringBuilder strBuild = new StringBuilder(airlines.getText());
         String flightNumberData = flightNumbers.getText();
-        if(strBuild.toString().contains(" ")){
+        if(strBuild.toString().contains(" ")){ //replace "space" with + because thats what API wants us to do
             int spaceFiller = strBuild.lastIndexOf( " ");
             strBuild.replace(spaceFiller, spaceFiller+1, "+");
         }
-        System.out.println(strBuild);
-
         String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
-
         getCurrentInfo(newString);
 
 
