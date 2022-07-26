@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class APIConnector {
 
     private final String urlString;
+    private final String regex = ".*\": null(,)?\\r\\n";
+    private String removeNull = "";
 
 
     public APIConnector(String urlString) throws MalformedURLException {
@@ -41,17 +43,21 @@ public class APIConnector {
                 Scanner scanner = new Scanner(url.openStream());
 
                 while (scanner.hasNext()) {
-                    informationString.append(scanner.nextLine());
+                    removeNull = scanner.nextLine();
+                    informationString.append(removeNull.replaceAll("null", "0"));
+
                 }
+               // System.out.println(informationString);
                 scanner.close();
 
                 String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
                 JSONParser parse = new JSONParser();
                 JSONArray dataObject = (JSONArray) parse.parse(actualData);
-
+                //System.out.println(dataObject);
                 JSONObject aviationData = (JSONObject) dataObject.get(0);
-
+                //System.out.println(aviationData);
                return aviationData;
+
             }
         }catch (Exception e) {
             e.printStackTrace();
@@ -91,4 +97,6 @@ public class APIConnector {
         }
         return null;
     }
+
+
 }
