@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -17,6 +18,8 @@ public class APIConnector {
     private final String urlString;
     private final String regex = ".*\": null(,)?\\r\\n";
     private String removeNull = "";
+    private JSONObject testData;
+    private JSONObject testData2;
 
 
     public APIConnector(String urlString) throws MalformedURLException {
@@ -24,6 +27,8 @@ public class APIConnector {
     }
 
     public JSONObject getJSONArray(){
+        ArrayList<String> getAirlineList = new ArrayList<>();
+
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -53,9 +58,19 @@ public class APIConnector {
                 String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
                 JSONParser parse = new JSONParser();
                 JSONArray dataObject = (JSONArray) parse.parse(actualData);
-                //System.out.println(dataObject);
+
+
                 JSONObject aviationData = (JSONObject) dataObject.get(0);
-                //System.out.println(aviationData);
+
+                for(int i = 0; i < 100; i++){
+                     testData = (JSONObject) dataObject.get(i);
+                     testData2 = (JSONObject) testData.get("airline");
+                     if(!getAirlineList.contains(testData2.get("name").toString()))
+                        getAirlineList.add(testData2.get("name").toString());
+
+
+                }
+                    System.out.println(getAirlineList);
                return aviationData;
 
             }

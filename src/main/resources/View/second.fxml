@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
       <AnchorPane layoutY="-15.0" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
          <children>
@@ -74,7 +74,7 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="6.0" prefWidth="35.0" rotate="180.0">
                            <children>
-                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal">
+                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="103.0" text="Terminal">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -127,9 +127,9 @@
                         <Image url="@../Image/plane_down.png" />
                      </image>
                   </ImageView>
-                   <SplitPane dividerPositions="0.29797979797979796" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
+                   <SplitPane dividerPositions="0.48514851485148514" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
                        <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="72.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="22.0" prefWidth="97.0">
                            <children>
                               <Label fx:id="termArrLabel" layoutX="-15.0" layoutY="-5.0" prefHeight="32.0" prefWidth="32.0" rotate="180.0">
                                  <font>
@@ -137,9 +137,9 @@
                                  </font>
                               </Label>
                            </children></AnchorPane>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="6.0" prefWidth="35.0" rotate="180.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="39.0" rotate="180.0">
                                <children>
-                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal">
+                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="55.0" text="Terminal">
                                        <font>
                                            <Font name="System Bold" size="14.0" />
                                        </font>
