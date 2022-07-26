@@ -72,9 +72,11 @@ public class MainController implements Initializable {
     private void getCurrentInfo(String url) throws MalformedURLException, ParseException {
         APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+url);
         JSONObject jsonObject = apiConnector.getJSONArray();
+        System.out.println(jsonObject);
         String departureString = jsonObject.get("departure").toString();
         String arrivalString = jsonObject.get("arrival").toString();
         String liveDataString = jsonObject.get("live").toString();
+        System.out.println(liveDataString);
         departureField(departureString);
         arrivalField(arrivalString);
         liveData(liveDataString);
@@ -123,8 +125,10 @@ public class MainController implements Initializable {
 
     private void liveData(String liveData) throws ParseException {
         String newLiveData = "[" + liveData + "]";
+        //System.out.println(newLiveData);
         JSONParser parse = new JSONParser();
         JSONArray dataObject = (JSONArray) parse.parse(newLiveData);
+        //System.out.println(dataObject);
         JSONObject liveFlightData = (JSONObject) dataObject.get(0);
         String lat = liveFlightData.get("latitude").toString();
         String longe = liveFlightData.get("longitude").toString();
