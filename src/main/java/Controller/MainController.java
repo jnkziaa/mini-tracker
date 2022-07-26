@@ -3,10 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.json.simple.JSONArray;
@@ -23,7 +20,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private String accessKey = "9cf202df7c52030fcbe351d02d9a1834"; //access key duhh
+    private String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
 
         @FXML
         public DatePicker dpDate;
@@ -39,6 +36,16 @@ public class MainController implements Initializable {
         private TextArea depDatas;
         @FXML
         private TextArea arrDatas;
+        @FXML
+        private Label termDepLabel;
+        @FXML
+        private Label termArrLabel;
+        @FXML
+        private Label gateDepLabel;
+        @FXML
+        private Label gateArrLabel;
+
+
 
 
 
@@ -98,10 +105,10 @@ public class MainController implements Initializable {
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
         String icao = departureData.get("icao").toString();
+        termArrLabel.setText(terminal);
+        gateArrLabel.setText(gate);
         arrDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated +
-                "\nGate: " + gate +
-                "\nTerminal:" + terminal);
+                "\nEstimated: " + estimated);
 
     }
 
@@ -119,10 +126,10 @@ public class MainController implements Initializable {
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
         String icao = departureData.get("icao").toString();
+        termDepLabel.setText(terminal);
+        gateDepLabel.setText(gate);
         depDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated +
-                "\nGate: " + gate +
-                "\nTerminal:" + terminal);
+                "\nEstimated: " + estimated);
 
     }
 
