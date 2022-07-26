@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -8,8 +9,13 @@
    <children>
       <AnchorPane layoutY="-15.0" opacity="0.74" prefHeight="660.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css">
          <children>
-            <TextArea layoutX="136.0" layoutY="208.0" prefHeight="56.0" prefWidth="761.0" />
-            <TextArea layoutX="899.0" layoutY="208.0" prefHeight="56.0" prefWidth="141.0" />
+            <TextArea editable="false" layoutX="136.0" layoutY="209.0" prefHeight="56.0" prefWidth="761.0" />
+            <TextArea layoutX="898.0" layoutY="209.0" prefHeight="56.0" prefWidth="141.0" />
+            <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="602.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/crash.png" />
+               </image></ImageView>
          </children></AnchorPane>
       <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
         <columnConstraints>
@@ -22,7 +28,7 @@
         </rowConstraints>
          <children>
             <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)" />
-            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. UA2402)" GridPane.columnIndex="1" />
+            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" GridPane.columnIndex="1" />
             <DatePicker fx:id="dpDate" prefHeight="127.0" prefWidth="152.0" promptText="Enter Date" GridPane.columnIndex="2" />
 
          </children>
@@ -46,10 +52,15 @@
                      <font>
                         <Font name="Britannic Bold" size="19.0" />
                      </font></Text>
+                  <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="127.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/plane_up.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0">
                <children>
-                   <Label contentDisplay="CENTER" layoutX="156.0" layoutY="28.0" prefHeight="32.0" prefWidth="120.0" text="Arrival" wrapText="true">
+                   <Label contentDisplay="CENTER" layoutX="184.0" layoutY="29.0" prefHeight="32.0" prefWidth="120.0" text="Arrival" wrapText="true">
                        <font>
                            <Font name="Berlin Sans FB" size="24.0" />
                        </font>
@@ -60,6 +71,11 @@
                        <font>
                            <Font name="Britannic Bold" size="19.0" />
                        </font></Text>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="144.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/plane_down.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
         </items>
       </SplitPane>

@@ -60,9 +60,9 @@ public class MainController implements Initializable {
         String flightNumberData = flightNumbers.getText();
         if(strBuild.toString().contains(" ")){
             int spaceFiller = strBuild.lastIndexOf( " ");
-            strBuild.deleteCharAt(spaceFiller);
-            strBuild.insert(spaceFiller, "+");
+            strBuild.replace(spaceFiller, spaceFiller+1, "+");
         }
+        System.out.println(strBuild);
 
         String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
 
