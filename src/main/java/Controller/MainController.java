@@ -20,18 +20,23 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
-    @FXML
-    public DatePicker dpDate;
-    @FXML
-    private TextField airlines;
-    @FXML
-    private TextField flightNumbers;
     private String accessKey = "9cf202df7c52030fcbe351d02d9a1834";
-    @FXML
-    private Text depAirport;
-    @FXML
-    private TextArea depDatas;
+
+        @FXML
+        public DatePicker dpDate;
+        @FXML
+        private TextField airlines;
+        @FXML
+        private TextField flightNumbers;
+        @FXML
+        private Text depAirport;
+        @FXML
+        private Text arrAirport;
+        @FXML
+        private TextArea depDatas;
+        @FXML
+        private TextArea arrDatas;
+
 
 
     @Override
@@ -68,11 +73,33 @@ public class MainController implements Initializable {
 
     private void getCurrentInfo(String url) throws MalformedURLException, ParseException {
         APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+url);
-        System.out.println("before");
         JSONObject jsonObject = apiConnector.getJSONArray();
         String departureString = jsonObject.get("departure").toString();
+        String arrivalString = jsonObject.get("arrival").toString();
         departureField(departureString);
+        arrivalField(arrivalString);
     }
+
+    private void arrivalField(String arrivalString) throws ParseException {
+        String newArrival = "[" + arrivalString + "]";
+        JSONParser parse = new JSONParser();
+        JSONArray dataObject = (JSONArray) parse.parse(newArrival);
+        JSONObject departureData = (JSONObject) dataObject.get(0);
+        arrAirport.setText(departureData.get("airport").toString());
+        String timezone = departureData.get("timezone").toString();
+        String scheduled = departureData.get("scheduled").toString();
+        String estimated = departureData.get("estimated").toString();
+        String gate = departureData.get("gate").toString();
+        String terminal = departureData.get("terminal").toString();
+        String iata = departureData.get("iata").toString();
+        String icao = departureData.get("icao").toString();
+        arrDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
+                "\nEstimated: " + estimated +
+                "\nGate: " + gate +
+                "\nTerminal:" + terminal);
+
+    }
+
 
     private void departureField(String departureString) throws ParseException {
         String newDeparture = "[" + departureString + "]";
