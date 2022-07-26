@@ -22,9 +22,6 @@ public class MainApplication extends Application {
 
     }
 
-
-    //HELLO JOHN FROM MARTIN
-
     public static void main(String[] args) {
         launch();
     }

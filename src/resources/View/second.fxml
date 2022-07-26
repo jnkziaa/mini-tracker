@@ -21,13 +21,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)" />
-            <TextField prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. UA2402)" GridPane.columnIndex="1" />
+            <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)" />
+            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. UA2402)" GridPane.columnIndex="1" />
             <DatePicker fx:id="dpDate" prefHeight="127.0" prefWidth="152.0" promptText="Enter Date" GridPane.columnIndex="2" />
 
          </children>
       </GridPane>
-      <Button layoutX="903.0" layoutY="129.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="134.0" text="Search Flight">
+      <Button layoutX="903.0" layoutY="129.0" mnemonicParsing="false" onAction="#getAirlineData" prefHeight="63.0" prefWidth="134.0" text="Search Flight">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>

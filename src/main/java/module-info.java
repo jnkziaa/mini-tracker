@@ -6,6 +6,7 @@ module com.example.gs_airlinetrackerappmain {
     requires com.dlsc.formsfx;
     requires validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires json.simple;
 
     opens com.genspark.Main to javafx.fxml;
     exports com.genspark.Main;
