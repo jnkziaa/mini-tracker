@@ -76,8 +76,10 @@ public class MainController implements Initializable {
         JSONObject jsonObject = apiConnector.getJSONArray();
         String departureString = jsonObject.get("departure").toString();
         String arrivalString = jsonObject.get("arrival").toString();
+        String liveDataString = jsonObject.get("live").toString();
         departureField(departureString);
         arrivalField(arrivalString);
+        liveData(liveDataString);
     }
 
     private void arrivalField(String arrivalString) throws ParseException {
@@ -121,6 +123,18 @@ public class MainController implements Initializable {
 
     }
 
+    private void liveData(String liveData) throws ParseException {
+        String newLiveData = "[" + liveData + "]";
+        JSONParser parse = new JSONParser();
+        JSONArray dataObject = (JSONArray) parse.parse(newLiveData);
+        JSONObject liveFlightData = (JSONObject) dataObject.get(0);
+        String lat = liveFlightData.get("latitude").toString();
+        String longe = liveFlightData.get("longitude").toString();
+        String alti = liveFlightData.get("altitude").toString();
+        String speed = liveFlightData.get("speed_horizontal").toString();
+
+
+    }
 
 }
 
