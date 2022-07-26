@@ -3,10 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.json.simple.JSONArray;
@@ -26,7 +23,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private String accessKey = "f90129335c49b254755f388b5503853a";
+    private String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
 
         @FXML
         public DatePicker dpDate;
@@ -42,6 +39,16 @@ public class MainController implements Initializable {
         private TextArea depDatas;
         @FXML
         private TextArea arrDatas;
+        @FXML
+        private Label termDepLabel;
+        @FXML
+        private Label termArrLabel;
+        @FXML
+        private Label gateDepLabel;
+        @FXML
+        private Label gateArrLabel;
+
+
 
 
 
@@ -52,10 +59,11 @@ public class MainController implements Initializable {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                 LocalDate today = LocalDate.now();
-                setDisable(empty || item.isAfter(today) || item.isBefore(today));
+                setDisable(empty || item.isAfter(today) || item.isBefore(today)); //block any day that isnt today
             }
 
         };
+
 
         dpDate.setDayCellFactory(blockedDates);
     }
@@ -64,14 +72,11 @@ public class MainController implements Initializable {
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
         StringBuilder strBuild = new StringBuilder(airlines.getText());
         String flightNumberData = flightNumbers.getText();
-        if(strBuild.toString().contains(" ")){
+        if(strBuild.toString().contains(" ")){ //replace "space" with + because thats what API wants us to do
             int spaceFiller = strBuild.lastIndexOf( " ");
             strBuild.replace(spaceFiller, spaceFiller+1, "+");
         }
-        System.out.println(strBuild);
-
         String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
-
         getCurrentInfo(newString);
 
 
@@ -103,10 +108,10 @@ public class MainController implements Initializable {
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
         String icao = departureData.get("icao").toString();
+        termArrLabel.setText(terminal);
+        gateArrLabel.setText(gate);
         arrDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated +
-                "\nGate: " + gate +
-                "\nTerminal:" + terminal);
+                "\nEstimated: " + estimated);
 
     }
 
@@ -124,10 +129,10 @@ public class MainController implements Initializable {
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
         String icao = departureData.get("icao").toString();
+        termDepLabel.setText(terminal);
+        gateDepLabel.setText(gate);
         depDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated +
-                "\nGate: " + gate +
-                "\nTerminal:" + terminal);
+                "\nEstimated: " + estimated);
 
     }
 
@@ -178,6 +183,7 @@ public class MainController implements Initializable {
             System.out.println("no live data");
         }
     }
+
 }
 
 
