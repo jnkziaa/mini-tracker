@@ -5,11 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +27,9 @@ public class MainController implements Initializable {
     private TextField airlines;
     @FXML
     private TextField flightNumbers;
-    private String accessKey = "167215d3e8acedeb1c16141680a33e74";
+    private String accessKey = "9cf202df7c52030fcbe351d02d9a1834";
+    @FXML
+    private Text depAirport;
 
 
     @Override
@@ -34,7 +39,7 @@ public class MainController implements Initializable {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                 LocalDate today = LocalDate.now();
-                setDisable(empty || item.compareTo(today) < -3);
+                setDisable(empty || item.isAfter(today) || item.isBefore(today));
             }
 
         };
@@ -43,7 +48,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void getAirlineData(ActionEvent event) throws MalformedURLException {
+    public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
         StringBuilder strBuild = new StringBuilder(airlines.getText());
         String flightNumberData = flightNumbers.getText();
         if(strBuild.toString().contains(" ")){
@@ -52,13 +57,28 @@ public class MainController implements Initializable {
             strBuild.insert(spaceFiller, "+");
         }
 
-        String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild.toString(), flightNumberData, accessKey);
+        String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
 
-        APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
-        apiConnector.getJSONArray();
+        getCurrentInfo(newString);
+
 
     }
 
+    private void getCurrentInfo(String url) throws MalformedURLException, ParseException {
+        APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+url);
+        System.out.println("before");
+        JSONObject jsonObject = apiConnector.getJSONArray();
+        String departureString = jsonObject.get("departure").toString();
+        departureField(departureString);
+    }
+
+    private void departureField(String departureString) throws ParseException {
+        String newDeparture = "[" + departureString + "]";
+        JSONParser parse = new JSONParser();
+        JSONArray dataObject = (JSONArray) parse.parse(newDeparture);
+        JSONObject departureData = (JSONObject) dataObject.get(0);
+        depAirport.setText(departureData.get("airport").toString());
+    }
 
 
 }

@@ -1,11 +1,14 @@
 package Controller;
+import com.google.gson.reflect.TypeToken;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import com.google.gson.Gson;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -18,7 +21,7 @@ public class APIConnector {
         this.urlString = urlString;
     }
 
-    public JSONArray getJSONArray(){
+    public JSONObject getJSONArray(){
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -42,10 +45,13 @@ public class APIConnector {
                 }
                 scanner.close();
 
+                String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
                 JSONParser parse = new JSONParser();
+                JSONArray dataObject = (JSONArray) parse.parse(actualData);
 
-                System.out.println(parse.parse(String.valueOf(informationString)));
-                return (JSONArray) parse.parse(String.valueOf(informationString));
+                JSONObject aviationData = (JSONObject) dataObject.get(0);
+
+               return aviationData;
             }
         }catch (Exception e) {
             e.printStackTrace();

@@ -34,7 +34,19 @@
       </Button>
       <SplitPane dividerPositions="0.5051679586563307" layoutX="137.0" layoutY="251.0" prefHeight="286.0" prefWidth="902.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0">
+               <children>
+                  <Label contentDisplay="CENTER" layoutX="166.0" layoutY="26.0" prefHeight="32.0" prefWidth="120.0" text="Departure" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextArea layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
+                  <Text fx:id="depAirport" layoutX="112.0" layoutY="108.0" wrappingWidth="213.00001525878906">
+                     <font>
+                        <Font size="33.0" />
+                     </font></Text>
+               </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" />
         </items>
       </SplitPane>
