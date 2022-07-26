@@ -30,6 +30,8 @@ public class MainController implements Initializable {
     private String accessKey = "9cf202df7c52030fcbe351d02d9a1834";
     @FXML
     private Text depAirport;
+    @FXML
+    private TextArea depDatas;
 
 
     @Override
@@ -78,6 +80,18 @@ public class MainController implements Initializable {
         JSONArray dataObject = (JSONArray) parse.parse(newDeparture);
         JSONObject departureData = (JSONObject) dataObject.get(0);
         depAirport.setText(departureData.get("airport").toString());
+        String timezone = departureData.get("timezone").toString();
+        String scheduled = departureData.get("scheduled").toString();
+        String estimated = departureData.get("estimated").toString();
+        String gate = departureData.get("gate").toString();
+        String terminal = departureData.get("terminal").toString();
+        String iata = departureData.get("iata").toString();
+        String icao = departureData.get("icao").toString();
+        depDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
+                "\nEstimated: " + estimated +
+                "\nGate: " + gate +
+                "\nTerminal:" + terminal);
+
     }
 
 

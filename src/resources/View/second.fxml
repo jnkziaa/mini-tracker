@@ -41,10 +41,10 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextArea layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
-                  <Text fx:id="depAirport" layoutX="112.0" layoutY="108.0" wrappingWidth="213.00001525878906">
+                  <TextArea fx:id="depDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
+                  <Text fx:id="depAirport" layoutX="105.0" layoutY="84.0" wrappingWidth="213.00001525878906">
                      <font>
-                        <Font size="33.0" />
+                        <Font name="Britannic Bold" size="19.0" />
                      </font></Text>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" />
