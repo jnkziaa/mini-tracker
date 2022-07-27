@@ -1,11 +1,14 @@
 package Controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import org.controlsfx.control.action.ActionUtils;
+import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,7 +23,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
+    private String accessKey = "251b949aa189eef9e6fccd8672d82b01"; //access key duhh
+    private APIConnector apiConnector;
 
         @FXML
         public DatePicker dpDate;
@@ -63,7 +67,27 @@ public class MainController implements Initializable {
 
 
         dpDate.setDayCellFactory(blockedDates);
+        String newString = String.format("?airline_name=&flight_number=&access_key=%s", accessKey);
+        try {
+            apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
+            apiConnector.getFullApi();
+
+          //  TextFields.bindAutoCompletion(airlines, apiConnector.getAirline(flightNumbers.getText()));
+          //  TextFields.bindAutoCompletion(flightNumbers, apiConnector.getFlights(airlines.toString()));
+        } catch (MalformedURLException e) {
+            System.out.println("not working in initialize");
+        }
+
+        airlines.textProperty().addListener((a,b,c) ->{
+            apiConnector.getAirline(airlines, flightNumbers);
+        });
+
+        flightNumbers.textProperty().addListener((a,b,c) ->{
+            apiConnector.getFlights(airlines, flightNumbers);
+        });
+
     }
+
 
     @FXML
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
@@ -89,7 +113,7 @@ public class MainController implements Initializable {
         System.out.println(liveDataString);
         departureField(departureString);
         arrivalField(arrivalString);
-        liveData(liveDataString);
+       // liveData(liveDataString);
     }
 
     private void arrivalField(String arrivalString) throws ParseException {
@@ -133,7 +157,7 @@ public class MainController implements Initializable {
 
     }
 
-    private void liveData(String liveData) throws ParseException {
+   /* private void liveData(String liveData) throws ParseException {
         String newLiveData = "[" + liveData + "]";
         //System.out.println(newLiveData);
         JSONParser parse = new JSONParser();
@@ -172,7 +196,7 @@ public class MainController implements Initializable {
         } catch (IOException e) {
         }
 
-    }
+    }*/
 
 }
 
