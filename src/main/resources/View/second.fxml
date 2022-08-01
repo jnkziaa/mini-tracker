@@ -67,11 +67,11 @@
          <children>
             <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)">
                <font>
-                  <Font name="Arial Black" size="18.0" />
+                  <Font name="Candara" size="18.0" />
                </font></TextField>
             <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" GridPane.columnIndex="1">
                <font>
-                  <Font name="Arial Black" size="18.0" />
+                  <Font name="Candara" size="18.0" />
                </font></TextField>
             <DatePicker fx:id="dpDate" prefHeight="127.0" prefWidth="152.0" promptText="Enter Date" GridPane.columnIndex="2" />
 
@@ -86,9 +86,9 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" style="-fx-border-color: #bca0dc;">
                <children>
-                  <Label contentDisplay="CENTER" layoutX="166.0" layoutY="26.0" prefHeight="32.0" prefWidth="120.0" text="Departure" wrapText="true">
+                  <Label contentDisplay="CENTER" layoutX="166.0" layoutY="26.0" prefHeight="32.0" prefWidth="134.0" text="Departure" wrapText="true">
                      <font>
-                        <Font name="Berlin Sans FB" size="24.0" />
+                        <Font name="Verdana" size="24.0" />
                      </font>
                   </Label>
                   <TextArea fx:id="depDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
@@ -153,7 +153,7 @@
                      <children>
                         <TitledPane alignment="CENTER" collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Scheduled">
                            <font>
-                              <Font name="Arial Black" size="12.0" />
+                              <Font name="Bodoni MT" size="16.0" />
                            </font>
                            <content>
                               <Label fx:id="scheduleDepLabel" alignment="CENTER" prefHeight="116.0" prefWidth="263.0" text="Time" textFill="#65b153">
@@ -164,7 +164,7 @@
                         </TitledPane>
                         <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Estimated" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Arial Black" size="12.0" />
+                              <Font name="Bodoni MT" size="16.0" />
                            </font>
                            <content>
                               <Label fx:id="estimatedDepLabel" alignment="CENTER" prefHeight="106.0" prefWidth="309.0" text="Time" textFill="#65b153">
@@ -184,9 +184,9 @@
                </opaqueInsets></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" style="-fx-border-color: #bca0dc;">
                <children>
-                   <Label contentDisplay="CENTER" layoutX="184.0" layoutY="29.0" prefHeight="32.0" prefWidth="120.0" text="Arrival" wrapText="true">
+                   <Label contentDisplay="CENTER" layoutX="184.0" layoutY="22.0" prefHeight="39.0" prefWidth="120.0" text="Arrival" wrapText="true">
                        <font>
-                           <Font name="Berlin Sans FB" size="24.0" />
+                           <Font name="Verdana" size="24.0" />
                        </font>
                    </Label>
 
@@ -254,7 +254,7 @@
                      <children>
                         <TitledPane alignment="CENTER" collapsible="false" prefHeight="133.0" prefWidth="213.0" text="Scheduled">
                            <font>
-                              <Font name="Arial Black" size="12.0" />
+                              <Font name="Bodoni MT" size="16.0" />
                            </font>
                            <content>
                               <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time" textFill="#65b153">
@@ -265,7 +265,7 @@
                         </TitledPane>
                         <TitledPane alignment="CENTER" collapsible="false" prefHeight="166.0" prefWidth="251.0" text="Estimated" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Arial Black" size="12.0" />
+                              <Font name="Bodoni MT" size="16.0" />
                            </font>
                            <content>
                               <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time" textFill="#65b153">
