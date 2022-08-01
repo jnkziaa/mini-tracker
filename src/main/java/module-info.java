@@ -9,6 +9,7 @@ module com.example.gs_airlinetrackerappmain {
     requires json.simple;
     requires gson;
     requires javafx.web;
+    requires commons.lang;
 
     opens com.genspark.Main to javafx.fxml;
     exports com.genspark.Main;
