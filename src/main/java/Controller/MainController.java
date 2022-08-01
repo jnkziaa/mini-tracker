@@ -2,9 +2,16 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -52,6 +59,10 @@ public class MainController implements Initializable {
     @FXML
     private TextArea arrDatas;
 
+    @FXML
+    private WebView liveDataWebView;
+    WebEngine webEngine = null;
+
 
 
     @Override
@@ -65,8 +76,6 @@ public class MainController implements Initializable {
             }
 
         };
-
-
         dpDate.setDayCellFactory(blockedDates);
         String newString = String.format("?airline_name=&flight_number=&access_key=%s", accessKey);
         try {
@@ -260,11 +269,43 @@ public class MainController implements Initializable {
             }
 
 
-        } catch (Exception e) {
-            System.out.println("no live data");
+        }catch (Exception e) {
+            try{
+                File file = new File("googleMapEmbed.html");
+                Writer fileWriter = new FileWriter(file, false);
+                fileWriter.write("<!DOCTYPE html>\n" +
+                        "<html lang=\"en\">\n" +
+                        "<head>\n" +
+                        "    <meta charset=\"UTF-8\">\n" +
+                        "    <title>HTML Google Map HTML Embed</title>\n" +
+                        "</head>\n" +
+                        "<body style=\"background-color:black\">\n" +
+                        "   <h1 style=\"font-color:white\">NO LIVE DATA<\\h1>" +
+                        "</body>\n" +
+                        "</html>");
+                fileWriter.close();
+            } catch (IOException f) {
+            }
         }
     }
 
+
+    public void buttonNext(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/View/liveData.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UTILITY);
+
+        stage.setTitle("Live Data Viewer");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 
 
