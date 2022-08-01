@@ -19,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,39 +33,52 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    private String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
-
-        @FXML
-        public DatePicker dpDate;
-        @FXML
-        private TextField airlines;
-        @FXML
-        private TextField flightNumbers;
-        @FXML
-        private Text depAirport;
-        @FXML
-        private Text arrAirport;
-        @FXML
-        private TextArea depDatas;
-        @FXML
-        private TextArea arrDatas;
-        @FXML
-        private Label termDepLabel;
-        @FXML
-        private Label termArrLabel;
-        @FXML
-        private Label gateDepLabel;
-        @FXML
-        private Label gateArrLabel;
+    private Boolean ontime = true;
+    private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
+    @FXML
+    public DatePicker dpDate;
+    @FXML
+    public Label aitaFlightNum;
+    @FXML
+    public Label airlineName;
+    @FXML
+    public Label aitaArrLabel;
+    @FXML
+    public Label aitaDepLabel;
+    @FXML
+    public Label flightStatusLabel;
+    @FXML
+    public Label timeLabel;
+    @FXML
+    private TextField airlines;
+    @FXML
+    private TextField flightNumbers;
+    @FXML
+    private Text depAirport;
+    @FXML
+    private Text arrAirport;
+    @FXML
+    private TextArea depDatas;
+    @FXML
+    private TextArea arrDatas;
+    @FXML
+    private Label termDepLabel;
+    @FXML
+    private Label termArrLabel;
+    @FXML
+    private Label gateDepLabel;
+    @FXML
+    private Label gateArrLabel;
 
         @FXML
         private WebView liveDataWebView;
         WebEngine webEngine = null;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Callback<DatePicker, DateCell> blockedDates = dp -> new DateCell(){
+        Callback<DatePicker, DateCell> blockedDates = dp -> new DateCell() {
             @Override
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
@@ -80,27 +94,53 @@ public class MainController implements Initializable {
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
         StringBuilder strBuild = new StringBuilder(airlines.getText());
         String flightNumberData = flightNumbers.getText();
-        if(strBuild.toString().contains(" ")){ //replace "space" with + because thats what API wants us to do
-            int spaceFiller = strBuild.lastIndexOf( " ");
-            strBuild.replace(spaceFiller, spaceFiller+1, "+");
+        if (strBuild.toString().contains(" ")) { //replace "space" with + because thats what API wants us to do
+            int spaceFiller = strBuild.lastIndexOf(" ");
+            strBuild.replace(spaceFiller, spaceFiller + 1, "+");
         }
         String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
+        System.out.println(newString);
         getCurrentInfo(newString);
 
 
     }
 
     private void getCurrentInfo(String url) throws MalformedURLException, ParseException {
-        APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+url);
+        APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights" + url);
         JSONObject jsonObject = apiConnector.getJSONArray();
-        System.out.println(jsonObject);
+        String flightStatus = StringUtils.capitalize(jsonObject.get("flight_status").toString());
+        flightStatusLabel.setText(flightStatus);
+
+
         String departureString = jsonObject.get("departure").toString();
         String arrivalString = jsonObject.get("arrival").toString();
         String liveDataString = jsonObject.get("live").toString();
+        String airlineData = jsonObject.get("airline").toString();
+        String flightData = jsonObject.get("flight").toString();
+        System.out.println(flightData);
         System.out.println(liveDataString);
         departureField(departureString);
         arrivalField(arrivalString);
+        miscField(airlineData, flightData);
         liveData(liveDataString);
+    }
+
+    private void miscField(String airlineData, String flightData) throws ParseException {
+        String airlineDataString = "[" + airlineData + "]";
+        JSONParser parse = new JSONParser();
+        JSONArray dataObjectAirline = (JSONArray) parse.parse(airlineDataString);
+        JSONObject airlineDataJson = (JSONObject) dataObjectAirline.get(0);
+        String flightAirline = airlineDataJson.get("name").toString();
+        String flightIata = airlineDataJson.get("iata").toString();
+        String combinedDatas = flightAirline + String.format(" (%s)", flightIata);
+        airlineName.setText(combinedDatas);
+
+        String flightDataString = "[" + flightData + "]";
+        JSONArray dataObjectFlight = (JSONArray) parse.parse(flightDataString);
+        JSONObject flightDataJson = (JSONObject) dataObjectFlight.get(0);
+        String icao = flightDataJson.get("icao").toString();
+        aitaFlightNum.setText(icao);
+
     }
 
     private void arrivalField(String arrivalString) throws ParseException {
@@ -115,9 +155,15 @@ public class MainController implements Initializable {
         String gate = departureData.get("gate").toString();
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
-        String icao = departureData.get("icao").toString();
+        aitaArrLabel.setText(iata);
         termArrLabel.setText(terminal);
         gateArrLabel.setText(gate);
+        if(!scheduled.equalsIgnoreCase(estimated)){
+            timeLabel.setText("Delayed");
+        }
+        else {
+            timeLabel.setText("On Time");
+        }
         arrDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
                 "\nEstimated: " + estimated);
 
@@ -137,6 +183,7 @@ public class MainController implements Initializable {
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
         String icao = departureData.get("icao").toString();
+        aitaDepLabel.setText(iata);
         termDepLabel.setText(terminal);
         gateDepLabel.setText(gate);
         depDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
