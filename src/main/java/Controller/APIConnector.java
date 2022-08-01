@@ -170,22 +170,25 @@ public class APIConnector {
     }
 
     public void getAirline(TextField airline, TextField flight){
-        int count = 0;
         String flights = flight.getText();
         String namesTest;
         String flightNum;
+
         ArrayList<String> names = new ArrayList<>();
+
         if(flights.isEmpty()) {
             for (Object o : getAirlineList.values()) {
                 if (!names.contains(o.toString()))
                     names.add(o.toString());
             }
         }else{
+            names.clear();
             for(Map.Entry<String, String> entry : getAirlineList.entrySet()){
                 namesTest = entry.getValue().toString();
                 flightNum = entry.getKey().toString();
                 System.out.println(namesTest);
                 if(flightNum.equals(flights)){
+                    names.clear();
                     names.add(entry.getValue());
                     break;
                 }else if(flightNum.contains(flights)){
@@ -204,27 +207,31 @@ public class APIConnector {
         String namesTest;
         String flightNum;
 
-        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> nums = new ArrayList<>();
 
         if(airlines.isEmpty()) {
             for (Object o : getAirlineList.keySet()) {
-                if (!names.contains(o.toString()))
-                    names.add(o.toString());
+                if (!nums.contains(o.toString()))
+                    nums.add(o.toString());
             }
+
         }else{
+            nums.clear();
             for(Map.Entry<String, String> entry : getAirlineList.entrySet()){
                 namesTest = entry.getValue().toString();
                 flightNum = entry.getKey().toString();
 
                 if(namesTest.equals(airlines)){
-                    names.add(entry.getKey());
+                    nums.clear();
+                    nums.add(entry.getKey());
                     break;
                 }else if(namesTest.contains(airlines)){
-                    names.add(entry.getKey());
+                    nums.clear();
+                    nums.add(entry.getKey());
                 }
             }
         }
-        TextFields.bindAutoCompletion(flight,names);
+        TextFields.bindAutoCompletion(flight,nums);
     }
 
 

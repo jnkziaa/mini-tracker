@@ -72,8 +72,6 @@ public class MainController implements Initializable {
             apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
             apiConnector.getFullApi();
 
-          //  TextFields.bindAutoCompletion(airlines, apiConnector.getAirline(flightNumbers.getText()));
-          //  TextFields.bindAutoCompletion(flightNumbers, apiConnector.getFlights(airlines.toString()));
         } catch (MalformedURLException e) {
             System.out.println("not working in initialize");
         }
