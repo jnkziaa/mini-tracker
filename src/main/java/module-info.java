@@ -8,6 +8,7 @@ module com.example.gs_airlinetrackerappmain {
     requires org.kordamp.bootstrapfx.core;
     requires json.simple;
     requires gson;
+    requires javafx.web;
 
     opens com.genspark.Main to javafx.fxml;
     exports com.genspark.Main;
