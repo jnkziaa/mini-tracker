@@ -188,6 +188,11 @@
                         </TitledPane>
                      </children>
                   </GridPane>
+                  <ImageView fitHeight="39.0" fitWidth="42.0" layoutX="124.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/aiport.png" />
+                     </image>
+                  </ImageView>
                </children>
                <effect>
                   <Blend mode="RED" />
@@ -289,6 +294,11 @@
                         </TitledPane>
                      </children>
                   </GridPane>
+                  <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="271.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/png-clipart-holm-arlanda-airport-airplane-airport-check-in-airplane-logo-airplane.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
         </items>
       </SplitPane>
