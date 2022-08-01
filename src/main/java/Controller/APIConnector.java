@@ -1,11 +1,10 @@
 package Controller;
-import com.google.gson.reflect.TypeToken;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import com.google.gson.Gson;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -140,7 +139,7 @@ public class APIConnector {
 
                 String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
                 JSONParser parse = new JSONParser();
-                JSONArray dataObject = (JSONArray) parse.parse(actualData);
+                dataObject = (JSONArray) parse.parse(actualData);
 
 
                 JSONObject aviationData = (JSONObject) dataObject.get(0);
@@ -224,6 +223,26 @@ public class APIConnector {
             }
         }
         TextFields.bindAutoCompletion(flight,nums);
+    }
+
+
+
+    public JSONObject findData(String flightnum){
+            JSONObject data;
+            JSONObject searchData = null;
+
+
+            for(int i = 0; i < 100; i++){
+                data = (JSONObject) dataObject.get(i);
+                getFlightNum = (JSONObject) data.get("flight");
+                String num = getFlightNum.get("number").toString();
+                System.out.println(num);
+                if(Objects.equals(num, flightnum)){
+                    searchData = (JSONObject) dataObject.get(i);
+                }
+            }
+            System.out.println(searchData);
+            return searchData;
     }
 
 
