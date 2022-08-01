@@ -39,6 +39,7 @@ public class MainController implements Initializable {
 
     private Boolean ontime = true;
     private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
+    private APIConnector apiConnector;
     @FXML
     public DatePicker dpDate;
     @FXML
