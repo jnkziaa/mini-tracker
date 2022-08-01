@@ -65,6 +65,7 @@ public class MainController implements Initializable {
 
         };
 
+
         dpDate.setDayCellFactory(blockedDates);
     }
 
@@ -180,15 +181,13 @@ public class MainController implements Initializable {
     }
 
     private String dateFormatter(String scheduled) {
-        
-        String formattedDate = null;
+        String actualDate = scheduled.substring(0, 10);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("MMM dd yy", Locale.ENGLISH);
+        LocalDate ld = LocalDate.parse(actualDate, dtf);
+        String formattedDate = dtf2.format(ld);
         String formattedTime = null;
         try {
-            String actualDate = scheduled.substring(0, 10);
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("MMM dd yy", Locale.ENGLISH);
-            LocalDate ld = LocalDate.parse(actualDate, dtf);
-            formattedDate = dtf2.format(ld);
             final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
             final Date dateObj = sdf.parse(scheduled.substring(11,16));
 
@@ -202,8 +201,10 @@ public class MainController implements Initializable {
     private void liveData(String liveData) throws ParseException {
         try {
             String newLiveData = "[" + liveData + "]";
+            //System.out.println(newLiveData);
             JSONParser parse = new JSONParser();
             JSONArray dataObject = (JSONArray) parse.parse(newLiveData);
+            //System.out.println(dataObject);
             JSONObject liveFlightData = (JSONObject) dataObject.get(0);
             String lat = liveFlightData.get("latitude").toString();
             String longe = liveFlightData.get("longitude").toString();
