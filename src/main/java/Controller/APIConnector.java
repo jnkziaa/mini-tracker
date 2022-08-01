@@ -58,19 +58,17 @@ public class APIConnector {
                 String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
                 JSONParser parse = new JSONParser();
                 JSONArray dataObject = (JSONArray) parse.parse(actualData);
-
-
                 JSONObject aviationData = (JSONObject) dataObject.get(0);
 
-                for(int i = 0; i < 100; i++){
+                /*for(int i = 0; i < 100; i++){
                      testData = (JSONObject) dataObject.get(i);
                      testData2 = (JSONObject) testData.get("airline");
                      if(!getAirlineList.contains(testData2.get("name").toString()))
                         getAirlineList.add(testData2.get("name").toString());
 
 
-                }
-                    System.out.println(getAirlineList);
+                }*/
+                System.out.println(aviationData);
                return aviationData;
 
             }
