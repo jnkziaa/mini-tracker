@@ -257,9 +257,9 @@
                               <Font name="Arial Black" size="12.0" />
                            </font>
                            <content>
-                              <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time">
+                              <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time" textFill="#65b153">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="Arial Black" size="15.0" />
                                  </font></Label>
                            </content>
                         </TitledPane>
@@ -268,9 +268,9 @@
                               <Font name="Arial Black" size="12.0" />
                            </font>
                            <content>
-                              <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time">
+                              <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time" textFill="#65b153">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font name="Arial Black" size="15.0" />
                                  </font></Label>
                            </content>
                         </TitledPane>

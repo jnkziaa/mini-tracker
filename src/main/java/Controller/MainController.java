@@ -38,45 +38,19 @@ public class MainController implements Initializable {
     @FXML
     public DatePicker dpDate;
     @FXML
-    public Label aitaFlightNum;
+    public Label aitaFlightNum, termDepLabel, termArrLabel, gateDepLabel, gateArrLabel, scheduledArrLabel, estimatedArrLabel, estimatedDepLabel, scheduleDepLabel,
+                airlineName, aitaArrLabel, aitaDepLabel, flightStatusLabel, timeLabel;
+
     @FXML
-    public Label airlineName;
+    private TextField airlines, flightNumbers;
     @FXML
-    public Label aitaArrLabel;
-    @FXML
-    public Label aitaDepLabel;
-    @FXML
-    public Label flightStatusLabel;
-    @FXML
-    public Label timeLabel;
-    @FXML
-    private TextField airlines;
-    @FXML
-    private TextField flightNumbers;
-    @FXML
-    private Text depAirport;
-    @FXML
-    private Text arrAirport;
+    private Text depAirport, arrAirport;
+
     @FXML
     private TextArea depDatas;
     @FXML
     private TextArea arrDatas;
-    @FXML
-    private Label termDepLabel;
-    @FXML
-    private Label termArrLabel;
-    @FXML
-    private Label gateDepLabel;
-    @FXML
-    private Label gateArrLabel;
-    @FXML
-    public Label scheduledArrLabel;
-    @FXML
-    public Label estimatedArrLabel;
-    @FXML
-    public Label estimatedDepLabel;
-    @FXML
-    public Label scheduleDepLabel;
+
 
 
     @Override
