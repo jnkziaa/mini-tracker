@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
       <AnchorPane layoutY="-15.0" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
          <children>
@@ -24,19 +16,44 @@
                   <Font name="Arial Black" size="22.0" />
                </font>
             </Label>
-            <TextArea editable="false" layoutX="136.0" layoutY="209.0" prefHeight="56.0" prefWidth="761.0" />
-            <TextArea layoutX="898.0" layoutY="209.0" prefHeight="56.0" prefWidth="141.0" />
+            <TextArea editable="false" layoutX="136.0" layoutY="209.0" prefHeight="56.0" prefWidth="738.0" />
+            <TextArea layoutX="875.0" layoutY="209.0" prefHeight="56.0" prefWidth="165.0" />
             <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="602.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/plane_up.png" />
                </image></ImageView>
-            <ImageView fitHeight="32.0" fitWidth="24.0" layoutX="905.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="24.0" layoutX="875.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/clock.png" />
                </image>
             </ImageView>
-            <Button layoutX="485.0" layoutY="553.0" mnemonicParsing="false" onAction="#buttonNext" prefHeight="35.0" prefWidth="214.0" text="Live Data" />
+            <Label fx:id="aitaFlightNum" layoutX="147.0" layoutY="203.0" prefHeight="43.0" prefWidth="158.0" text="TT000" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="airlineName" layoutX="147.0" layoutY="240.0" prefHeight="18.0" prefWidth="142.0" />
+            <Label fx:id="aitaDepLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="216.0" prefHeight="32.0" prefWidth="120.0" text="AIR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="aitaArrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="610.0" layoutY="217.0" prefHeight="32.0" prefWidth="120.0" text="PORT" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="flightStatusLabel" alignment="CENTER" layoutX="899.0" layoutY="209.0" prefHeight="39.0" prefWidth="134.0" text="Expected">
+               <font>
+                  <Font name="Arial Black" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="timeLabel" alignment="CENTER" layoutX="918.0" layoutY="241.0" prefHeight="18.0" prefWidth="103.0">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
         <columnConstraints>
@@ -48,8 +65,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)" />
-            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" GridPane.columnIndex="1" />
+            <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></TextField>
+            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font></TextField>
             <DatePicker fx:id="dpDate" prefHeight="127.0" prefWidth="152.0" promptText="Enter Date" GridPane.columnIndex="2" />
 
          </children>
@@ -61,7 +84,7 @@
       </Button>
       <SplitPane dividerPositions="0.5051679586563307" layoutX="137.0" layoutY="251.0" prefHeight="286.0" prefWidth="902.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" style="-fx-border-color: #bca0dc;">
                <children>
                   <Label contentDisplay="CENTER" layoutX="166.0" layoutY="26.0" prefHeight="32.0" prefWidth="120.0" text="Departure" wrapText="true">
                      <font>
@@ -114,13 +137,52 @@
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
-                  <Text fx:id="depAirport" layoutX="94.0" layoutY="89.0" wrappingWidth="246.00001525878906">
+                  <Text fx:id="depAirport" layoutX="94.0" layoutY="89.0" textAlignment="CENTER" wrappingWidth="246.00001525878906">
                      <font>
                         <Font name="Britannic Bold" size="19.0" />
                      </font>
                   </Text>
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0">
+                  <GridPane layoutX="15.0" layoutY="107.0" prefHeight="104.0" prefWidth="423.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Scheduled">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <content>
+                              <Label fx:id="scheduleDepLabel" alignment="CENTER" prefHeight="116.0" prefWidth="263.0" text="Time" textFill="#65b153">
+                                 <font>
+                                    <Font name="Arial Black" size="15.0" />
+                                 </font></Label>
+                           </content>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" text="Estimated" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <content>
+                              <Label fx:id="estimatedDepLabel" alignment="CENTER" prefHeight="106.0" prefWidth="309.0" text="Time" textFill="#65b153">
+                                 <font>
+                                    <Font name="Arial Black" size="15.0" />
+                                 </font></Label>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </GridPane>
+               </children>
+               <effect>
+                  <Blend mode="RED" />
+               </effect>
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="15.0" right="5.0" />
+               </opaqueInsets></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" style="-fx-border-color: #bca0dc;">
                <children>
                    <Label contentDisplay="CENTER" layoutX="184.0" layoutY="29.0" prefHeight="32.0" prefWidth="120.0" text="Arrival" wrapText="true">
                        <font>
@@ -129,7 +191,7 @@
                    </Label>
 
                    <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
-                   <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" wrappingWidth="253.00001525878906">
+                   <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" textAlignment="CENTER" wrappingWidth="253.00001525878906">
                        <font>
                            <Font name="Britannic Bold" size="19.0" />
                        </font></Text>
@@ -138,19 +200,20 @@
                         <Image url="@../Image/plane_down.png" />
                      </image>
                   </ImageView>
-                   <SplitPane dividerPositions="0.48514851485148514" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
+                   <SplitPane dividerPositions="0.3070866141732283" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
                        <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="22.0" prefWidth="97.0">
+                        <AnchorPane prefHeight="22.0" prefWidth="19.0">
                            <children>
-                              <Label fx:id="termArrLabel" layoutX="-15.0" layoutY="-5.0" prefHeight="32.0" prefWidth="32.0" rotate="180.0">
+                              <Label fx:id="termArrLabel" layoutX="6.0" layoutY="-4.0" prefHeight="26.0" prefWidth="12.0" rotate="180.0">
                                  <font>
                                     <Font name="Arial Black" size="17.0" />
                                  </font>
                               </Label>
-                           </children></AnchorPane>
+                           </children>
+                        </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="39.0" rotate="180.0">
                                <children>
-                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="55.0" text="Terminal">
+                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal">
                                        <font>
                                            <Font name="System Bold" size="14.0" />
                                        </font>
@@ -180,6 +243,39 @@
                            </children></AnchorPane>
                      </items>
                   </SplitPane>
+                  <GridPane layoutX="15.0" layoutY="107.0" prefHeight="104.0" prefWidth="423.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="133.0" prefWidth="213.0" text="Scheduled">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <content>
+                              <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                           </content>
+                        </TitledPane>
+                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="166.0" prefWidth="251.0" text="Estimated" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <content>
+                              <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </GridPane>
                </children></AnchorPane>
         </items>
       </SplitPane>

@@ -1,23 +1,11 @@
 package Controller;
 
-import com.genspark.Main.MainApplication;
 import javafx.event.ActionEvent;
-import javafx.event.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import org.controlsfx.control.action.ActionUtils;
-import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,14 +20,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
+
+import static java.time.format.DateTimeFormatter.ISO_OFFSET_TIME;
+import static java.time.format.DateTimeFormatter.ofLocalizedDate;
 
 public class MainController implements Initializable {
 
     private Boolean ontime = true;
     private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
-    private APIConnector apiConnector;
     @FXML
     public DatePicker dpDate;
     @FXML
@@ -74,12 +69,14 @@ public class MainController implements Initializable {
     private Label gateDepLabel;
     @FXML
     private Label gateArrLabel;
-
-
-        @FXML
-        private WebView liveDataWebView;
-        WebEngine webEngine = null;
-
+    @FXML
+    public Label scheduledArrLabel;
+    @FXML
+    public Label estimatedArrLabel;
+    @FXML
+    public Label estimatedDepLabel;
+    @FXML
+    public Label scheduleDepLabel;
 
 
     @Override
@@ -93,26 +90,10 @@ public class MainController implements Initializable {
             }
 
         };
+
+
         dpDate.setDayCellFactory(blockedDates);
-        String newString = String.format("?airline_name=&flight_number=&access_key=%s", accessKey);
-        try {
-            apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
-            apiConnector.getFullApi();
-
-        } catch (MalformedURLException e) {
-            System.out.println("not working in initialize");
-        }
-
-        airlines.textProperty().addListener((a,b,c) ->{
-            apiConnector.getAirline(airlines, flightNumbers);
-        });
-
-        flightNumbers.textProperty().addListener((a,b,c) ->{
-            apiConnector.getFlights(airlines, flightNumbers);
-        });
-
     }
-
 
     @FXML
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
@@ -145,10 +126,8 @@ public class MainController implements Initializable {
         System.out.println(liveDataString);
         departureField(departureString);
         arrivalField(arrivalString);
-
         miscField(airlineData, flightData);
         liveData(liveDataString);
-
     }
 
     private void miscField(String airlineData, String flightData) throws ParseException {
@@ -177,7 +156,13 @@ public class MainController implements Initializable {
         arrAirport.setText(departureData.get("airport").toString());
         String timezone = departureData.get("timezone").toString();
         String scheduled = departureData.get("scheduled").toString();
+        String formattedSchedule = dateFormatter(scheduled);
+        scheduledArrLabel.setText(formattedSchedule);
+
         String estimated = departureData.get("estimated").toString();
+        String formattedEstimated = dateFormatter(scheduled);
+        estimatedArrLabel.setText(formattedEstimated);
+        
         String gate = departureData.get("gate").toString();
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
@@ -190,8 +175,7 @@ public class MainController implements Initializable {
         else {
             timeLabel.setText("On Time");
         }
-        arrDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated);
+
 
     }
 
@@ -204,7 +188,13 @@ public class MainController implements Initializable {
         depAirport.setText(departureData.get("airport").toString());
         String timezone = departureData.get("timezone").toString();
         String scheduled = departureData.get("scheduled").toString();
+        String formattedScheduled = dateFormatter(scheduled);
+        scheduleDepLabel.setText(formattedScheduled);
+
         String estimated = departureData.get("estimated").toString();
+        String formattedEstimated = dateFormatter(estimated);
+        estimatedDepLabel.setText(formattedEstimated);
+
         String gate = departureData.get("gate").toString();
         String terminal = departureData.get("terminal").toString();
         String iata = departureData.get("iata").toString();
@@ -212,14 +202,29 @@ public class MainController implements Initializable {
         aitaDepLabel.setText(iata);
         termDepLabel.setText(terminal);
         gateDepLabel.setText(gate);
-        depDatas.setText("\n\n\n\n\nScheduled: " + scheduled +
-                "\nEstimated: " + estimated);
+
 
     }
 
+    private String dateFormatter(String scheduled) {
+        String actualDate = scheduled.substring(0, 10);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("MMM dd yy", Locale.ENGLISH);
+        LocalDate ld = LocalDate.parse(actualDate, dtf);
+        String formattedDate = dtf2.format(ld);
+        String formattedTime = null;
+        try {
+            final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+            final Date dateObj = sdf.parse(scheduled.substring(11,16));
+
+            formattedTime = new SimpleDateFormat("K:mm a").format(dateObj);
+        } catch (final java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        return formattedDate + "\n" + formattedTime;
+    }
 
     private void liveData(String liveData) throws ParseException {
-
         try {
             String newLiveData = "[" + liveData + "]";
             //System.out.println(newLiveData);
@@ -262,43 +267,9 @@ public class MainController implements Initializable {
             }
 
 
-        }catch (Exception e) {
-            try{
-                File file = new File("googleMapEmbed.html");
-                Writer fileWriter = new FileWriter(file, false);
-                fileWriter.write("<!DOCTYPE html>\n" +
-                        "<html lang=\"en\">\n" +
-                        "<head>\n" +
-                        "    <meta charset=\"UTF-8\">\n" +
-                        "    <title>HTML Google Map HTML Embed</title>\n" +
-                        "</head>\n" +
-                        "<body style=\"background-color:black\">\n" +
-                        "   <h1 style=\"font-color:white\">NO LIVE DATA<\\h1>" +
-                        "</body>\n" +
-                        "</html>");
-                fileWriter.close();
-            } catch (IOException f) {
-            }
+        } catch (Exception e) {
+            System.out.println("no live data");
         }
-    }
-
-
-    public void buttonNext(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/View/liveData.fxml"));
-        Parent root = null;
-        try {
-            root = fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UTILITY);
-
-
-        stage.setTitle("Live Data Viewer");
-        stage.setScene(scene);
-        stage.show();
     }
 
 }
