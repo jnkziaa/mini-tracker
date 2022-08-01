@@ -2,6 +2,7 @@ package Controller;
 
 import com.genspark.Main.MainApplication;
 import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import org.controlsfx.control.action.ActionUtils;
+import org.controlsfx.control.textfield.TextFields;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -33,6 +36,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+
     private Boolean ontime = true;
     private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
     @FXML
@@ -70,6 +74,7 @@ public class MainController implements Initializable {
     @FXML
     private Label gateArrLabel;
 
+
         @FXML
         private WebView liveDataWebView;
         WebEngine webEngine = null;
@@ -88,7 +93,25 @@ public class MainController implements Initializable {
 
         };
         dpDate.setDayCellFactory(blockedDates);
+        String newString = String.format("?airline_name=&flight_number=&access_key=%s", accessKey);
+        try {
+            apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
+            apiConnector.getFullApi();
+
+        } catch (MalformedURLException e) {
+            System.out.println("not working in initialize");
+        }
+
+        airlines.textProperty().addListener((a,b,c) ->{
+            apiConnector.getAirline(airlines, flightNumbers);
+        });
+
+        flightNumbers.textProperty().addListener((a,b,c) ->{
+            apiConnector.getFlights(airlines, flightNumbers);
+        });
+
     }
+
 
     @FXML
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
@@ -121,8 +144,10 @@ public class MainController implements Initializable {
         System.out.println(liveDataString);
         departureField(departureString);
         arrivalField(arrivalString);
+
         miscField(airlineData, flightData);
         liveData(liveDataString);
+
     }
 
     private void miscField(String airlineData, String flightData) throws ParseException {
@@ -191,7 +216,9 @@ public class MainController implements Initializable {
 
     }
 
+
     private void liveData(String liveData) throws ParseException {
+
         try {
             String newLiveData = "[" + liveData + "]";
             //System.out.println(newLiveData);
@@ -267,10 +294,12 @@ public class MainController implements Initializable {
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UTILITY);
 
+
         stage.setTitle("Live Data Viewer");
         stage.setScene(scene);
         stage.show();
     }
+
 }
 
 

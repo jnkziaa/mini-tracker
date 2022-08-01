@@ -124,6 +124,10 @@
                             <mainClass>
                                 com.example.gs_airlinetrackerappmain/com.genspark.Main.MainApplication
                             </mainClass>
+                            <options>
+                                <option>--add-exports</option>
+                                <option>javafx.base/com.sun.javafx.event=ALL-UNNAMED</option>
+                            </options>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
