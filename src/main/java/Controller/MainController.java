@@ -35,6 +35,7 @@ public class MainController implements Initializable {
 
     private Boolean ontime = true;
     private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
+    private APIConnector apiConnector;
     @FXML
     public DatePicker dpDate;
     @FXML
@@ -67,11 +68,27 @@ public class MainController implements Initializable {
 
 
         dpDate.setDayCellFactory(blockedDates);
+        String newString = String.format("?airline_name=&flight_number=&access_key=%s", accessKey);
+        try {
+            apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights"+newString);
+            apiConnector.getFullApi();
+
+        } catch (MalformedURLException e) {
+            System.out.println("not working in initialize");
+        }
+
+        airlines.textProperty().addListener((a,b,c) ->{
+            apiConnector.getAirline(airlines, flightNumbers);
+        });
+
+        flightNumbers.textProperty().addListener((a,b,c) ->{
+            apiConnector.getFlights(airlines, flightNumbers);
+        });
     }
 
     @FXML
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
-        StringBuilder strBuild = new StringBuilder(airlines.getText());
+        /*StringBuilder strBuild = new StringBuilder(airlines.getText());
         String flightNumberData = flightNumbers.getText();
         if (strBuild.toString().contains(" ")) { //replace "space" with + because thats what API wants us to do
             int spaceFiller = strBuild.lastIndexOf(" ");
@@ -79,14 +96,16 @@ public class MainController implements Initializable {
         }
         String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
         System.out.println(newString);
-        getCurrentInfo(newString);
+        */
+        String flightNumberData = flightNumbers.getText();
+        getCurrentInfo(flightNumberData);
 
 
     }
 
-    private void getCurrentInfo(String url) throws MalformedURLException, ParseException {
-        APIConnector apiConnector = new APIConnector("http://api.aviationstack.com/v1/flights" + url);
-        JSONObject jsonObject = apiConnector.getJSONArray();
+    private void getCurrentInfo(String flightNum) throws MalformedURLException, ParseException {
+        JSONObject jsonObject = apiConnector.findData(flightNum);
+        System.out.println(jsonObject);
         String flightStatus = StringUtils.capitalize(jsonObject.get("flight_status").toString());
         flightStatusLabel.setText(flightStatus);
 
