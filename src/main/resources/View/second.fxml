@@ -21,7 +21,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField prefHeight="56.0" prefWidth="781.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css" />
+                        <TextField prefHeight="56.0" prefWidth="781.0" stylesheets="@../CssStyle/backgroundStyle.css" />
                   <TitledPane cacheShape="false" centerShape="false" collapsible="false" prefHeight="200.0" prefWidth="200.0" scaleShape="false" styleClass="button" text="Flight Status" textFill="#4c468f" GridPane.columnIndex="1">
                      <font>
                         <Font name="Bodoni MT Black" size="12.0" />
@@ -123,7 +123,7 @@
                                 <SepiaTone />
                             </effect>
                         </Label>
-                        <TextArea fx:id="depDatas" layoutX="5.0" layoutY="59.0" prefHeight="200.0" prefWidth="423.0" stylesheets="@../CssStyle/backgroundStyle.css" />
+                        <TextArea fx:id="depDatas" layoutX="5.0" layoutY="59.0" prefHeight="200.0" prefWidth="435.0" stylesheets="@../CssStyle/backgroundStyle.css" />
                         <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="104.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Image/takeoff.png" />
@@ -134,7 +134,7 @@
                                 <Font name="Bodoni MT Bold" size="19.0" />
                             </font>
                         </Text>
-                        <GridPane layoutX="5.0" layoutY="107.0" prefHeight="104.0" prefWidth="422.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
+                        <GridPane layoutX="5.0" layoutY="107.0" prefHeight="104.0" prefWidth="435.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -196,7 +196,7 @@
                         </Text>
                             </children>
                         </GridPane>
-                  <GridPane layoutX="218.0" layoutY="218.0" prefHeight="34.0" prefWidth="210.0" styleClass="button">
+                  <GridPane layoutX="218.0" layoutY="218.0" prefHeight="34.0" prefWidth="221.0" styleClass="button">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
@@ -211,13 +211,14 @@
                            </font>
                         </Text>
                         <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
-                        <Text fx:id="gateDepLabel" fill="#00a2ff" fontSmoothingType="LCD" text="B" textAlignment="CENTER" wrappingWidth="74.0000069141388" GridPane.columnIndex="1">
+                        <Text fx:id="gateDepLabel" fill="#00a2ff" fontSmoothingType="LCD" text="B" textAlignment="CENTER" wrappingWidth="72.0000069141388" GridPane.columnIndex="1">
                            <font>
                               <Font name="Bodoni MT Bold" size="20.0" />
                            </font>
                         </Text>
                      </children>
                   </GridPane>
+                  <ButtonBar layoutX="215.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" />
                     </children>
                     <opaqueInsets>
                         <Insets bottom="10.0" left="15.0" right="5.0" />
