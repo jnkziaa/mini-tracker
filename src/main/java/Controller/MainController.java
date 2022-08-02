@@ -33,13 +33,12 @@ import static java.time.format.DateTimeFormatter.ofLocalizedDate;
 
 public class MainController implements Initializable {
 
-    private Boolean ontime = true;
     private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
     private APIConnector apiConnector;
     @FXML
     public DatePicker dpDate;
     @FXML
-    public Label aitaFlightNum, termDepLabel, termArrLabel, gateDepLabel, gateArrLabel, scheduledArrLabel, estimatedArrLabel, estimatedDepLabel, scheduleDepLabel,
+    public Text aitaFlightNum, termDepLabel, termArrLabel, gateDepLabel, gateArrLabel, scheduledArrLabel, estimatedArrLabel, estimatedDepLabel, scheduleDepLabel,
                 airlineName, aitaArrLabel, aitaDepLabel, flightStatusLabel, timeLabel;
 
     @FXML
@@ -124,28 +123,22 @@ public class MainController implements Initializable {
     }
 
     private void miscField(String airlineData, String flightData) throws ParseException {
-        String airlineDataString = "[" + airlineData + "]";
-        JSONParser parse = new JSONParser();
-        JSONArray dataObjectAirline = (JSONArray) parse.parse(airlineDataString);
-        JSONObject airlineDataJson = (JSONObject) dataObjectAirline.get(0);
+
+        JSONObject airlineDataJson = jsonConverter(airlineData);
         String flightAirline = airlineDataJson.get("name").toString();
         String flightIata = airlineDataJson.get("iata").toString();
         String combinedDatas = flightAirline + String.format(" (%s)", flightIata);
         airlineName.setText(combinedDatas);
 
-        String flightDataString = "[" + flightData + "]";
-        JSONArray dataObjectFlight = (JSONArray) parse.parse(flightDataString);
-        JSONObject flightDataJson = (JSONObject) dataObjectFlight.get(0);
+
+        JSONObject flightDataJson = jsonConverter(flightData);
         String icao = flightDataJson.get("icao").toString();
         aitaFlightNum.setText(icao);
 
     }
 
     private void arrivalField(String arrivalString) throws ParseException {
-        String newArrival = "[" + arrivalString + "]";
-        JSONParser parse = new JSONParser();
-        JSONArray dataObject = (JSONArray) parse.parse(newArrival);
-        JSONObject departureData = (JSONObject) dataObject.get(0);
+        JSONObject departureData = jsonConverter(arrivalString);
         arrAirport.setText(departureData.get("airport").toString());
         String timezone = departureData.get("timezone").toString();
         String scheduled = departureData.get("scheduled").toString();
@@ -174,10 +167,7 @@ public class MainController implements Initializable {
 
 
     private void departureField(String departureString) throws ParseException {
-        String newDeparture = "[" + departureString + "]";
-        JSONParser parse = new JSONParser();
-        JSONArray dataObject = (JSONArray) parse.parse(newDeparture);
-        JSONObject departureData = (JSONObject) dataObject.get(0);
+        JSONObject departureData = jsonConverter(departureString);
         depAirport.setText(departureData.get("airport").toString());
         String timezone = departureData.get("timezone").toString();
         String scheduled = departureData.get("scheduled").toString();
@@ -200,14 +190,17 @@ public class MainController implements Initializable {
     }
 
     private String dateFormatter(String scheduled) {
-        String actualDate = scheduled.substring(0, 10);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("MMM dd yy", Locale.ENGLISH);
-        LocalDate ld = LocalDate.parse(actualDate, dtf);
-        String formattedDate = dtf2.format(ld);
+
+        String formattedDate = null;
         String formattedTime = null;
         try {
-            final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+            String actualDate = scheduled.substring(0, 10);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.ENGLISH);
+            LocalDate ld = LocalDate.parse(actualDate, dtf);
+            formattedDate = dtf2.format(ld);
+
+            final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             final Date dateObj = sdf.parse(scheduled.substring(11,16));
 
             formattedTime = new SimpleDateFormat("K:mm a").format(dateObj);
@@ -217,14 +210,18 @@ public class MainController implements Initializable {
         return formattedDate + "\n" + formattedTime;
     }
 
+    private JSONObject jsonConverter(String input) throws ParseException {
+        String jsonDataString = String.format("[%s]", input);
+        JSONParser parse = new JSONParser();
+        JSONArray dataObjectAirline = (JSONArray) parse.parse(jsonDataString);
+        JSONObject inputDataJson = (JSONObject) dataObjectAirline.get(0);
+        return inputDataJson;
+    }
+
     private void liveData(String liveData) throws ParseException {
         try {
-            String newLiveData = "[" + liveData + "]";
-            //System.out.println(newLiveData);
-            JSONParser parse = new JSONParser();
-            JSONArray dataObject = (JSONArray) parse.parse(newLiveData);
             //System.out.println(dataObject);
-            JSONObject liveFlightData = (JSONObject) dataObject.get(0);
+            JSONObject liveFlightData = jsonConverter(liveData);
             String lat = liveFlightData.get("latitude").toString();
             String longe = liveFlightData.get("longitude").toString();
             String alti = liveFlightData.get("altitude").toString();
@@ -264,6 +261,8 @@ public class MainController implements Initializable {
             System.out.println("no live data");
         }
     }
+
+
 
 }
 

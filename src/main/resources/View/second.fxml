@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -8,299 +9,329 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1168.0" styleClass="root" stylesheets="@../CssStyle/backgroundStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
-   <children>
-      <AnchorPane layoutY="-15.0" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
-         <children>
-            <GridPane layoutX="136.0" layoutY="208.0" prefHeight="56.0" prefWidth="899.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="759.0" minWidth="10.0" prefWidth="744.4" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" prefWidth="154.80000000000007" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TextField prefHeight="133.0" prefWidth="726.0" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                  <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="@../Image/clock.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </GridPane>
-            <Label layoutX="363.0" layoutY="33.0" prefHeight="63.0" prefWidth="486.0" text="Any flight worldwide, at your fingertips">
-               <font>
-                  <Font name="Arial Black" size="22.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Image/plane_up.png" />
-               </image></ImageView>
-
-            <Button layoutX="485.0" layoutY="553.0" mnemonicParsing="false" onAction="#buttonNext" prefHeight="35.0" prefWidth="214.0" text="Live Data" />
-
-            <Label fx:id="aitaFlightNum" layoutX="147.0" layoutY="203.0" prefHeight="43.0" prefWidth="158.0" text="TT000" textAlignment="CENTER">
-               <font>
-                  <Font name="Candara Bold" size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="airlineName" layoutX="147.0" layoutY="240.0" prefHeight="18.0" prefWidth="142.0" />
-            <Label fx:id="aitaDepLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="216.0" prefHeight="32.0" prefWidth="120.0" text="AIR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Corbel Bold" size="27.0" />
-               </font>
-            </Label>
-            <Label fx:id="aitaArrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="610.0" layoutY="217.0" prefHeight="32.0" prefWidth="120.0" text="PORT" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Corbel Bold" size="27.0" />
-               </font>
-            </Label>
-            <Label fx:id="flightStatusLabel" alignment="CENTER" layoutX="899.0" layoutY="209.0" prefHeight="39.0" prefWidth="134.0" text="Expected" textFill="#2f8c2f">
-               <font>
-                  <Font name="Tahoma" size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="timeLabel" alignment="CENTER" layoutX="918.0" layoutY="241.0" prefHeight="18.0" prefWidth="103.0">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-            </Label>
-            <Button layoutX="899.0" layoutY="144.0" mnemonicParsing="false" onAction="#getAirlineData" prefHeight="61.0" prefWidth="134.0" text="Search Flight">
-               <font>
-                  <Font name="Arial Black" size="14.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
-      <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.4" minWidth="10.0" prefWidth="304.4" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="308.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0000305175781" minWidth="10.0" prefWidth="149.20000000000005" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)">
-               <font>
-                  <Font name="Candara" size="18.0" />
-               </font></TextField>
-            <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Candara" size="18.0" />
-               </font></TextField>
-            <DatePicker fx:id="dpDate" prefHeight="61.0" prefWidth="148.0" promptText="Enter Date" GridPane.columnIndex="2" />
-
-         </children>
-      </GridPane>
-      <SplitPane dividerPositions="0.5051679586563307" layoutX="137.0" layoutY="251.0" prefHeight="286.0" prefWidth="899.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" style="-fx-border-color: #bca0dc;">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="26.0" prefHeight="32.0" prefWidth="134.0" text="Departure" wrapText="true">
-                     <font>
-                        <Font name="Verdana" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="depDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="423.0" />
-                  <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="127.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/takeoff.png" />
-                     </image>
-                  </ImageView>
-                  <SplitPane dividerPositions="0.29797979797979796" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="46.0" prefWidth="72.0">
-                           <children>
-                              <Label fx:id="termDepLabel" layoutX="10.0" layoutY="-5.0" prefHeight="32.0" prefWidth="12.0" rotate="180.0">
-                                 <font>
-                                    <Font name="Arial Black" size="17.0" />
-                                 </font></Label>
-                           </children></AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="6.0" prefWidth="35.0" rotate="180.0">
-                           <children>
-                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="103.0" text="Terminal" textFill="#3e5eef">
-                                 <font>
-                                    <Font name="Franklin Gothic Demi" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-                  <SplitPane dividerPositions="0.5" layoutX="251.0" layoutY="217.0" prefHeight="24.0" prefWidth="90.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="42.0" text="Gate" textFill="#3e5eef">
-                                 <font>
-                                    <Font name="Franklin Gothic Demi Italic" size="14.0" />
-                                 </font></Label>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="gateDepLabel" layoutX="10.0" layoutY="3.0" prefHeight="18.0" prefWidth="32.0">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                    </items>
-                  </SplitPane>
-                  <Text fx:id="depAirport" fill="RED" layoutX="94.0" layoutY="89.0" text="Los Angeles" textAlignment="CENTER" wrappingWidth="246.00001525878906">
-                     <font>
-                        <Font name="Bodoni MT Bold" size="19.0" />
-                     </font>
-                  </Text>
-                  <GridPane layoutX="15.0" layoutY="107.0" prefHeight="104.0" prefWidth="422.0">
+    <children>
+        <AnchorPane layoutY="-16.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
+            <children>
+                <GridPane layoutX="135.0" layoutY="208.0" prefHeight="56.0" prefWidth="898.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="765.8" minWidth="10.0" prefWidth="764.8" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" prefWidth="133.20000000000005" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                     <children>
-                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Scheduled">
+                    <children>
+                        <TextField prefHeight="56.0" prefWidth="781.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css" />
+                  <TitledPane cacheShape="false" centerShape="false" collapsible="false" prefHeight="200.0" prefWidth="200.0" scaleShape="false" styleClass="button" text="Flight Status" textFill="#4c468f" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Bodoni MT Black" size="12.0" />
+                     </font>
+                     <content>
+                        <Text fx:id="flightStatusLabel" fill="#4a9c2a" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" smooth="false" stroke="#007323" styleClass="text" text="Scheduled" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="111.98242568969727">
                            <font>
-                              <Font name="Bodoni MT" size="16.0" />
+                              <Font size="15.0" />
                            </font>
-                           <content>
-                              <Label fx:id="scheduleDepLabel" alignment="CENTER" prefHeight="116.0" prefWidth="263.0" text="Time" textFill="#65b153">
-                                 <font>
-                                    <Font name="Bodoni MT" size="21.0" />
-                                 </font></Label>
-                           </content>
-                        </TitledPane>
-                        <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" prefHeight="199.0" prefWidth="200.0" text="Estimated" GridPane.columnIndex="1">
-                           <font>
-                              <Font name="Bodoni MT" size="16.0" />
-                           </font>
-                           <content>
-                              <Label fx:id="estimatedDepLabel" alignment="CENTER" prefHeight="106.0" prefWidth="309.0" text="Time" textFill="#65b153">
-                                 <font>
-                                    <Font name="Bodoni MT" size="21.0" />
-                                 </font></Label>
-                           </content>
-                        </TitledPane>
-                     </children>
-                  </GridPane>
-                  <ImageView fitHeight="39.0" fitWidth="42.0" layoutX="124.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/aiport.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <effect>
-                  <Blend mode="RED" />
-               </effect>
-               <opaqueInsets>
-                  <Insets bottom="10.0" left="15.0" right="5.0" />
-               </opaqueInsets></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" style="-fx-border-color: #bca0dc;">
-               <children>
-                   <Label contentDisplay="CENTER" layoutX="184.0" layoutY="22.0" prefHeight="39.0" prefWidth="120.0" text="Arrival" wrapText="true">
-                       <font>
-                           <Font name="Verdana" size="24.0" />
-                       </font>
-                   </Label>
+                        </Text>
+                     </content>
+                  </TitledPane>
+                    </children>
+                </GridPane>
+                <Label layoutX="363.0" layoutY="33.0" prefHeight="63.0" prefWidth="486.0" stylesheets="@../CssStyle/backgroundStyle.css" text="Any flight worldwide, at your fingertips" textFill="#00c8ff">
+                    <font>
+                        <Font name="Arial Black" size="22.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                </Label>
+                <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Image/plane_up.png" />
+                    </image>
+                </ImageView>
 
-                   <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="417.0" />
-                   <Text fx:id="arrAirport" fill="RED" layoutX="104.0" layoutY="90.0" text="Boston" textAlignment="CENTER" wrappingWidth="253.00001525878906">
-                       <font>
-                           <Font name="Bodoni MT Bold" size="19.0" />
-                       </font></Text>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="144.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/plane_down.png" />
-                     </image>
-                  </ImageView>
-                   <SplitPane dividerPositions="0.3070866141732283" layoutX="52.0" layoutY="217.0" prefHeight="24.0" prefWidth="103.0" rotate="180.0">
-                       <items>
-                        <AnchorPane prefHeight="22.0" prefWidth="19.0">
-                           <children>
-                              <Label fx:id="termArrLabel" layoutX="6.0" layoutY="-4.0" prefHeight="26.0" prefWidth="12.0" rotate="180.0">
-                                 <font>
-                                    <Font name="Arial Black" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="39.0" rotate="180.0">
-                               <children>
-                                   <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="68.0" text="Terminal" textFill="#3e5eef">
-                                       <font>
-                                           <Font name="Franklin Gothic Demi" size="14.0" />
-                                       </font>
-                                   </Label>
-                               </children>
-                           </AnchorPane>
-                       </items>
-                   </SplitPane>
-                  <SplitPane dividerPositions="0.5" layoutX="258.0" layoutY="217.0" prefHeight="24.0" prefWidth="90.0">
-                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label layoutX="1.0" layoutY="-1.0" prefHeight="24.0" prefWidth="42.0" text="Gate" textFill="#3e5eef">
-                                 <font>
-                                    <Font name="Franklin Gothic Demi Italic" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Label fx:id="gateArrLabel" layoutX="4.0" prefHeight="24.0" prefWidth="42.0">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                     </items>
-                  </SplitPane>
-                  <GridPane layoutX="15.0" layoutY="107.0" prefHeight="104.0" prefWidth="415.0">
+                <Button layoutX="485.0" layoutY="553.0" mnemonicParsing="false" onAction="#buttonNext" prefHeight="35.0" prefWidth="214.0" text="Live Data" />
+                <Label fx:id="aitaDepLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="216.0" prefHeight="32.0" prefWidth="120.0" text="AIR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                    <font>
+                        <Font name="Corbel Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Label fx:id="aitaArrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="610.0" layoutY="217.0" prefHeight="32.0" prefWidth="120.0" text="PORT" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                    <font>
+                        <Font name="Corbel Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Button layoutX="899.0" layoutY="145.0" mnemonicParsing="false" onAction="#getAirlineData" prefHeight="60.0" prefWidth="134.0" stylesheets="@../CssStyle/backgroundStyle.css" text="Search Flight">
+                    <font>
+                        <Font name="Arial Black" size="14.0" />
+                    </font>
+                </Button>
+            <Text fx:id="airlineName" fill="#00a2ff" fontSmoothingType="LCD" layoutX="89.0" layoutY="258.0" text="Generic Airlines (GA)" textAlignment="CENTER" wrappingWidth="290.000015258789">
+               <font>
+                  <Font name="Bodoni MT Bold" size="20.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Text>
+            <Text fx:id="aitaFlightNum" fill="#00a2ff" layoutX="89.0" layoutY="232.0" text="TTT0000" textAlignment="CENTER" wrappingWidth="290.000015258789">
+               <font>
+                  <Font name="Bodoni MT Bold" size="28.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Text>
+            </children>
+        </AnchorPane>
+        <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.4" minWidth="10.0" prefWidth="304.4" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="308.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0000305175781" minWidth="10.0" prefWidth="149.20000000000005" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="airlines" prefHeight="69.0" prefWidth="278.0" promptText=" Airline(e.g. United Airlines)" stylesheets="@../CssStyle/backgroundStyle.css">
+                    <font>
+                        <Font name="Candara" size="18.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="flightNumbers" prefHeight="62.0" prefWidth="315.0" promptText="Flight Number(e.g. 2402)" stylesheets="@../CssStyle/backgroundStyle.css" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Candara" size="18.0" />
+                    </font>
+                </TextField>
+                <DatePicker fx:id="dpDate" prefHeight="61.0" prefWidth="148.0" promptText="Enter Date" stylesheets="@../CssStyle/backgroundStyle.css" GridPane.columnIndex="2" />
+
+            </children>
+        </GridPane>
+        <SplitPane dividerPositions="0.5051679586563307" layoutX="137.0" layoutY="251.0" prefHeight="286.0" prefWidth="899.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="24.0" prefHeight="32.0" prefWidth="142.0" text="Departure" textAlignment="CENTER" textFill="#00aaff" wrapText="true">
+                            <font>
+                                <Font name="Verdana Bold" size="75.0" />
+                            </font>
+                            <effect>
+                                <SepiaTone />
+                            </effect>
+                        </Label>
+                        <TextArea fx:id="depDatas" layoutX="5.0" layoutY="59.0" prefHeight="200.0" prefWidth="423.0" stylesheets="@../CssStyle/backgroundStyle.css" />
+                        <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="104.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Image/takeoff.png" />
+                            </image>
+                        </ImageView>
+                        <Text fx:id="depAirport" layoutX="94.0" layoutY="89.0" text="Origin" textAlignment="CENTER" wrappingWidth="246.00001525878906">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="19.0" />
+                            </font>
+                        </Text>
+                        <GridPane layoutX="5.0" layoutY="107.0" prefHeight="104.0" prefWidth="422.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <TitledPane alignment="CENTER" collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Scheduled">
+                                    <font>
+                                        <Font name="Bodoni MT" size="16.0" />
+                                    </font>
+                                    <content>
+                                        <Label fx:id="scheduleDepLabel" alignment="CENTER" prefHeight="116.0" prefWidth="263.0" text="Time" textFill="#65b153">
+                                            <font>
+                                                <Font name="Bodoni MT" size="21.0" />
+                                            </font>
+                                        </Label>
+                                    </content>
+                                </TitledPane>
+                                <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" prefHeight="199.0" prefWidth="200.0" text="Estimated" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font name="Bodoni MT" size="16.0" />
+                                    </font>
+                                    <content>
+                                        <Label fx:id="estimatedDepLabel" alignment="CENTER" prefHeight="106.0" prefWidth="309.0" text="Time" textFill="#65b153">
+                                            <font>
+                                                <Font name="Bodoni MT" size="21.0" />
+                                            </font>
+                                        </Label>
+                                    </content>
+                                </TitledPane>
+                            </children>
+                        </GridPane>
+                        <ImageView fitHeight="39.0" fitWidth="42.0" layoutX="104.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Image/aiport.png" />
+                            </image>
+                        </ImageView>
+                        <GridPane layoutX="5.0" layoutY="218.0" prefHeight="34.0" prefWidth="214.0" styleClass="button">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                        <Text fill="#00a2ff" fontSmoothingType="LCD" text="Terminal" textAlignment="CENTER" wrappingWidth="118.00002217292786">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                        <Text fx:id="termDepLabel" fill="#00a2ff" fontSmoothingType="LCD" layoutX="19.0" layoutY="34.0" text="B" textAlignment="CENTER" wrappingWidth="74.0000069141388" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                            </children>
+                        </GridPane>
+                  <GridPane layoutX="218.0" layoutY="218.0" prefHeight="34.0" prefWidth="210.0" styleClass="button">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
                      </rowConstraints>
                      <children>
-                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="133.0" prefWidth="213.0" text="Scheduled">
+                        <Text fill="#00a2ff" fontSmoothingType="LCD" text="Gate" textAlignment="CENTER" wrappingWidth="122.00002241134644">
                            <font>
-                              <Font name="Bodoni MT" size="16.0" />
+                              <Font name="Bodoni MT Bold" size="20.0" />
                            </font>
-                           <content>
-                              <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time" textFill="#65b153">
-                                 <font>
-                                    <Font name="Bodoni MT" size="21.0" />
-                                 </font></Label>
-                           </content>
-                        </TitledPane>
-                        <TitledPane alignment="CENTER" collapsible="false" prefHeight="189.0" prefWidth="310.0" text="Estimated" GridPane.columnIndex="1">
+                        </Text>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                        <Text fx:id="gateDepLabel" fill="#00a2ff" fontSmoothingType="LCD" text="B" textAlignment="CENTER" wrappingWidth="74.0000069141388" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Bodoni MT" size="16.0" />
+                              <Font name="Bodoni MT Bold" size="20.0" />
                            </font>
-                           <content>
-                              <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time" textFill="#65b153">
-                                 <font>
-                                    <Font name="Bodoni MT" size="21.0" />
-                                 </font></Label>
-                           </content>
-                        </TitledPane>
+                        </Text>
                      </children>
                   </GridPane>
-                  <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="271.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/png-clipart-holm-arlanda-airport-airplane-airport-check-in-airplane-logo-airplane.png" />
-                     </image>
-                  </ImageView>
-               </children></AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+                    </children>
+                    <opaqueInsets>
+                        <Insets bottom="10.0" left="15.0" right="5.0" />
+                    </opaqueInsets>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" style="-fx-border-color: #bca0dc;" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
+                    <children>
+                        <Label contentDisplay="CENTER" layoutX="184.0" layoutY="22.0" prefHeight="39.0" prefWidth="120.0" text="Arrival" textFill="#00aaff" wrapText="true">
+                            <font>
+                                <Font name="Verdana Bold" size="24.0" />
+                            </font>
+                            <effect>
+                                <SepiaTone />
+                            </effect>
+                        </Label>
+
+                        <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="417.0" />
+                        <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" text="Destination" textAlignment="CENTER" wrappingWidth="253.00001525878906">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="19.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="328.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Image/plane_down.png" />
+                            </image>
+                        </ImageView>
+                        <GridPane layoutX="15.0" layoutY="107.0" prefHeight="104.0" prefWidth="415.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <TitledPane alignment="CENTER" collapsible="false" prefHeight="133.0" prefWidth="213.0" text="Scheduled">
+                                    <font>
+                                        <Font name="Bodoni MT" size="16.0" />
+                                    </font>
+                                    <content>
+                                        <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time" textFill="#65b153">
+                                            <font>
+                                                <Font name="Bodoni MT" size="21.0" />
+                                            </font>
+                                        </Label>
+                                    </content>
+                                </TitledPane>
+                                <TitledPane alignment="CENTER" collapsible="false" prefHeight="189.0" prefWidth="310.0" text="Estimated" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font name="Bodoni MT" size="16.0" />
+                                    </font>
+                                    <content>
+                                        <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time" textFill="#65b153">
+                                            <font>
+                                                <Font name="Bodoni MT" size="21.0" />
+                                            </font>
+                                        </Label>
+                                    </content>
+                                </TitledPane>
+                            </children>
+                        </GridPane>
+                        <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="331.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Image/png-clipart-holm-arlanda-airport-airplane-airport-check-in-airplane-logo-airplane.png" />
+                            </image>
+                        </ImageView>
+                  <GridPane layoutX="15.0" layoutY="218.0" prefHeight="34.0" prefWidth="209.0" styleClass="button">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <Text fill="#00a2ff" fontSmoothingType="LCD" text="Terminal" textAlignment="CENTER" wrappingWidth="118.00002217292786">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                        <Text fx:id="TermArrLabel" fill="#00a2ff" fontSmoothingType="LCD" text="B" textAlignment="CENTER" wrappingWidth="74.0000069141388" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="223.0" layoutY="218.0" prefHeight="34.0" prefWidth="208.0" styleClass="button">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="71.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <Text fill="#00a2ff" fontSmoothingType="LCD" text="Gate" textAlignment="CENTER" wrappingWidth="118.00002217292786">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="1" />
+                        <Text fx:id="gateArrLabel" fill="#00a2ff" fontSmoothingType="LCD" text="B" textAlignment="CENTER" wrappingWidth="74.0000069141388" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </GridPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>

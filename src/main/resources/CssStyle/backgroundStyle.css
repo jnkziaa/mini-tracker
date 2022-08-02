@@ -3,9 +3,22 @@
     -fx-background-size: cover;
 }
 
+.label {
+    -fx-font-size: 25px;
+}
+
+.outline.label .text {
+    -fx-fill: lightseagreen;
+    -fx-stroke: firebrick;
+    -fx-stroke-width: 2px;
+}
+
 .button
 {
-    -fx-background-color : #F3F3F3;
+    -fx-background-size: 1200 900;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-color: transparent;
 }
 .button:hover
 {
