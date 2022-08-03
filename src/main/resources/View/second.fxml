@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -12,7 +11,7 @@
     <children>
         <AnchorPane layoutY="-16.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="660.0" prefWidth="1168.0">
             <children>
-                <GridPane layoutX="135.0" layoutY="208.0" prefHeight="56.0" prefWidth="898.0">
+                <GridPane layoutX="135.0" layoutY="210.0" prefHeight="56.0" prefWidth="898.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="765.8" minWidth="10.0" prefWidth="764.8" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="443.0" minWidth="10.0" prefWidth="133.20000000000005" />
@@ -21,49 +20,28 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TextField prefHeight="56.0" prefWidth="781.0" stylesheets="@../CssStyle/backgroundStyle.css" />
-                  <TitledPane cacheShape="false" centerShape="false" collapsible="false" prefHeight="200.0" prefWidth="200.0" scaleShape="false" styleClass="button" text="Flight Status" textFill="#4c468f" GridPane.columnIndex="1">
+                  <TitledPane cacheShape="false" centerShape="false" collapsible="false" prefHeight="150.0" prefWidth="200.0" scaleShape="false" styleClass="button" text="Flight Status" textFill="#4c468f" GridPane.columnIndex="1">
                      <font>
                         <Font name="Bodoni MT Black" size="12.0" />
                      </font>
                      <content>
                         <Text fx:id="flightStatusLabel" fill="#4a9c2a" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" smooth="false" stroke="#007323" styleClass="text" text="Scheduled" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="111.98242568969727">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="13.0" />
                            </font>
                         </Text>
                      </content>
                   </TitledPane>
+                        <TextField prefHeight="53.0" prefWidth="781.0" stylesheets="@../CssStyle/backgroundStyle.css" />
                     </children>
                 </GridPane>
-                <Label layoutX="363.0" layoutY="33.0" prefHeight="63.0" prefWidth="486.0" stylesheets="@../CssStyle/backgroundStyle.css" text="Any flight worldwide, at your fingertips" textFill="#00c8ff">
-                    <font>
-                        <Font name="Arial Black" size="22.0" />
-                    </font>
-                    <effect>
-                        <DropShadow />
-                    </effect>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </Label>
-                <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="539.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="562.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../Image/plane_up.png" />
                     </image>
                 </ImageView>
 
                 <Button layoutX="485.0" layoutY="553.0" mnemonicParsing="false" onAction="#buttonNext" prefHeight="35.0" prefWidth="214.0" text="Live Data" />
-                <Label fx:id="aitaDepLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="394.0" layoutY="216.0" prefHeight="32.0" prefWidth="120.0" text="AIR" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-                    <font>
-                        <Font name="Corbel Bold" size="27.0" />
-                    </font>
-                </Label>
-                <Label fx:id="aitaArrLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="610.0" layoutY="217.0" prefHeight="32.0" prefWidth="120.0" text="PORT" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
-                    <font>
-                        <Font name="Corbel Bold" size="27.0" />
-                    </font>
-                </Label>
                 <Button layoutX="899.0" layoutY="145.0" mnemonicParsing="false" onAction="#getAirlineData" prefHeight="60.0" prefWidth="134.0" stylesheets="@../CssStyle/backgroundStyle.css" text="Search Flight">
                     <font>
                         <Font name="Arial Black" size="14.0" />
@@ -80,6 +58,30 @@
             <Text fx:id="aitaFlightNum" fill="#00a2ff" layoutX="89.0" layoutY="232.0" text="TTT0000" textAlignment="CENTER" wrappingWidth="290.000015258789">
                <font>
                   <Font name="Bodoni MT Bold" size="28.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Text>
+            <Text fill="#00a2ff" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Any flight worldwide, at your fingertips" textAlignment="CENTER" wrappingWidth="1168.0">
+               <font>
+                  <Font name="Bodoni MT Bold" size="41.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+            <Text fx:id="aitaDepLabel" fill="#00a2ff" layoutX="471.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AIR">
+               <font>
+                  <Font name="Bodoni MT" size="30.0" />
+               </font>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Text>
+            <Text fx:id="aitaArrLabel" fill="#00a2ff" layoutX="642.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PORT">
+               <font>
+                  <Font name="Bodoni MT" size="30.0" />
                </font>
                <effect>
                   <SepiaTone />
@@ -115,14 +117,6 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="284.0" prefWidth="443.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="24.0" prefHeight="32.0" prefWidth="142.0" text="Departure" textAlignment="CENTER" textFill="#00aaff" wrapText="true">
-                            <font>
-                                <Font name="Verdana Bold" size="75.0" />
-                            </font>
-                            <effect>
-                                <SepiaTone />
-                            </effect>
-                        </Label>
                         <TextArea fx:id="depDatas" layoutX="5.0" layoutY="59.0" prefHeight="200.0" prefWidth="435.0" stylesheets="@../CssStyle/backgroundStyle.css" />
                         <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="104.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -147,25 +141,25 @@
                                     <font>
                                         <Font name="Bodoni MT" size="16.0" />
                                     </font>
-                                    <content>
-                                        <Label fx:id="scheduleDepLabel" alignment="CENTER" prefHeight="116.0" prefWidth="263.0" text="Time" textFill="#65b153">
-                                            <font>
-                                                <Font name="Bodoni MT" size="21.0" />
-                                            </font>
-                                        </Label>
-                                    </content>
+                           <content>
+                              <Text fx:id="scheduleDepLabel" fill="#65b153" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="206.13672494888306">
+                                 <font>
+                                    <Font name="Bodoni MT" size="24.0" />
+                                 </font>
+                              </Text>
+                           </content>
                                 </TitledPane>
                                 <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" prefHeight="199.0" prefWidth="200.0" text="Estimated" GridPane.columnIndex="1">
                                     <font>
                                         <Font name="Bodoni MT" size="16.0" />
                                     </font>
-                                    <content>
-                                        <Label fx:id="estimatedDepLabel" alignment="CENTER" prefHeight="106.0" prefWidth="309.0" text="Time" textFill="#65b153">
-                                            <font>
-                                                <Font name="Bodoni MT" size="21.0" />
-                                            </font>
-                                        </Label>
-                                    </content>
+                           <content>
+                              <Text fx:id="estimatedDepLabel" fill="#65b153" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="207.13672494888306">
+                                 <font>
+                                    <Font name="Bodoni MT" size="24.0" />
+                                 </font>
+                              </Text>
+                           </content>
                                 </TitledPane>
                             </children>
                         </GridPane>
@@ -218,7 +212,11 @@
                         </Text>
                      </children>
                   </GridPane>
-                  <ButtonBar layoutX="215.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" />
+                  <Text layoutX="190.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departure">
+                     <font>
+                        <Font name="Bodoni MT Bold" size="29.0" />
+                     </font>
+                  </Text>
                     </children>
                     <opaqueInsets>
                         <Insets bottom="10.0" left="15.0" right="5.0" />
@@ -226,14 +224,6 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="277.0" prefWidth="426.0" style="-fx-border-color: #bca0dc;" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
                     <children>
-                        <Label contentDisplay="CENTER" layoutX="184.0" layoutY="22.0" prefHeight="39.0" prefWidth="120.0" text="Arrival" textFill="#00aaff" wrapText="true">
-                            <font>
-                                <Font name="Verdana Bold" size="24.0" />
-                            </font>
-                            <effect>
-                                <SepiaTone />
-                            </effect>
-                        </Label>
 
                         <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="417.0" />
                         <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" text="Destination" textAlignment="CENTER" wrappingWidth="253.00001525878906">
@@ -259,25 +249,25 @@
                                     <font>
                                         <Font name="Bodoni MT" size="16.0" />
                                     </font>
-                                    <content>
-                                        <Label fx:id="scheduledArrLabel" alignment="CENTER" prefHeight="87.0" prefWidth="324.0" text="Time" textFill="#65b153">
-                                            <font>
-                                                <Font name="Bodoni MT" size="21.0" />
-                                            </font>
-                                        </Label>
-                                    </content>
+                           <content>
+                              <Text fx:id="scheduledArrLabel" fill="#65b153" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="195.13672494888306">
+                                 <font>
+                                    <Font name="Bodoni MT" size="24.0" />
+                                 </font>
+                              </Text>
+                           </content>
                                 </TitledPane>
                                 <TitledPane alignment="CENTER" collapsible="false" prefHeight="189.0" prefWidth="310.0" text="Estimated" GridPane.columnIndex="1">
                                     <font>
                                         <Font name="Bodoni MT" size="16.0" />
                                     </font>
-                                    <content>
-                                        <Label fx:id="estimatedArrLabel" alignment="CENTER" prefHeight="125.0" prefWidth="220.0" text="Time" textFill="#65b153">
-                                            <font>
-                                                <Font name="Bodoni MT" size="21.0" />
-                                            </font>
-                                        </Label>
-                                    </content>
+                           <content>
+                              <Text fx:id="estimatedArrLabel" fill="#65b153" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="197.1366639137268">
+                                 <font>
+                                    <Font name="Bodoni MT" size="24.0" />
+                                 </font>
+                              </Text>
+                           </content>
                                 </TitledPane>
                             </children>
                         </GridPane>
@@ -330,6 +320,11 @@
                         </Text>
                      </children>
                   </GridPane>
+                  <Text layoutX="184.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival">
+                     <font>
+                        <Font name="Bodoni MT Bold" size="29.0" />
+                     </font>
+                  </Text>
                     </children>
                 </AnchorPane>
             </items>
