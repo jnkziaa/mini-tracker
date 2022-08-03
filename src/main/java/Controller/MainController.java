@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -19,25 +16,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.apache.commons.lang.StringUtils;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import static java.time.format.DateTimeFormatter.ISO_OFFSET_TIME;
-import static java.time.format.DateTimeFormatter.ofLocalizedDate;
 
 public class MainController implements Initializable {
 
@@ -58,7 +49,6 @@ public class MainController implements Initializable {
     private TextArea depDatas;
     @FXML
     private TextArea arrDatas;
-
 
 
     @Override
@@ -228,12 +218,11 @@ public class MainController implements Initializable {
 
     private void liveData(String liveData) throws ParseException {
         try {
-            //System.out.println(dataObject);
             JSONObject liveFlightData = jsonConverter(liveData);
             String lat = liveFlightData.get("latitude").toString();
             String longe = liveFlightData.get("longitude").toString();
-            String alti = liveFlightData.get("altitude").toString();
-            String speed = liveFlightData.get("speed_horizontal").toString();
+            //String alti = liveFlightData.get("altitude").toString();
+            //String speed = liveFlightData.get("speed_horizontal").toString();
             try {
                 File file = new File("googleMapEmbed.html");
                 Writer fileWriter = new FileWriter(file, false);
@@ -288,7 +277,7 @@ public class MainController implements Initializable {
 
     public void buttonNext(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/View/liveData.fxml"));
-        Parent root = null;
+        Parent root;
         try {
             root = fxmlLoader.load();
         } catch (IOException e) {
