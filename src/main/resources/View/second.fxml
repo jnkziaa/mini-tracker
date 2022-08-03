@@ -123,9 +123,9 @@
                                 <Image url="@../Image/takeoff.png" />
                             </image>
                         </ImageView>
-                        <Text fx:id="depAirport" layoutX="94.0" layoutY="89.0" text="Origin" textAlignment="CENTER" wrappingWidth="246.00001525878906">
+                        <Text fx:id="depAirport" fill="RED" layoutX="94.0" layoutY="89.0" text="Origin" textAlignment="CENTER" wrappingWidth="246.00001525878906">
                             <font>
-                                <Font name="Bodoni MT Bold" size="19.0" />
+                                <Font name="Bodoni MT Bold" size="23.0" />
                             </font>
                         </Text>
                         <GridPane layoutX="5.0" layoutY="107.0" prefHeight="104.0" prefWidth="435.0" styleClass="button" stylesheets="@../CssStyle/backgroundStyle.css">
@@ -163,11 +163,6 @@
                                 </TitledPane>
                             </children>
                         </GridPane>
-                        <ImageView fitHeight="39.0" fitWidth="42.0" layoutX="104.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Image/aiport.png" />
-                            </image>
-                        </ImageView>
                         <GridPane layoutX="5.0" layoutY="218.0" prefHeight="34.0" prefWidth="214.0" styleClass="button">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
@@ -228,7 +223,7 @@
                         <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="417.0" />
                         <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" text="Destination" textAlignment="CENTER" wrappingWidth="253.00001525878906">
                             <font>
-                                <Font name="Bodoni MT Bold" size="19.0" />
+                                <Font name="Bodoni MT Bold" size="23.0" />
                             </font>
                         </Text>
                         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="328.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
@@ -271,11 +266,6 @@
                                 </TitledPane>
                             </children>
                         </GridPane>
-                        <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="331.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Image/png-clipart-holm-arlanda-airport-airplane-airport-check-in-airplane-logo-airplane.png" />
-                            </image>
-                        </ImageView>
                   <GridPane layoutX="15.0" layoutY="218.0" prefHeight="34.0" prefWidth="209.0" styleClass="button">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="129.0" />
