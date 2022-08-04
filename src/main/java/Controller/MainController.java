@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    private final String accessKey = "f90129335c49b254755f388b5503853a"; //access key duhh
+    private final String accessKey = "b22650573a3e39cf5f3ee76c113b9d38"; //access key duhh
     private APIConnector apiConnector;
     @FXML
     public DatePicker dpDate;
@@ -85,15 +85,6 @@ public class MainController implements Initializable {
 
     @FXML
     public void getAirlineData(ActionEvent event) throws MalformedURLException, ParseException {
-        /*StringBuilder strBuild = new StringBuilder(airlines.getText());
-        String flightNumberData = flightNumbers.getText();
-        if (strBuild.toString().contains(" ")) { //replace "space" with + because thats what API wants us to do
-            int spaceFiller = strBuild.lastIndexOf(" ");
-            strBuild.replace(spaceFiller, spaceFiller + 1, "+");
-        }
-        String newString = String.format("?airline_name=%s&flight_number=%s&access_key=%s", strBuild, flightNumberData, accessKey);
-        System.out.println(newString);
-        */
         String flightNumberData = flightNumbers.getText();
         getCurrentInfo(flightNumberData);
 
