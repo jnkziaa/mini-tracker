@@ -28,53 +28,6 @@ public class APIConnector {
         this.urlString = urlString;
     }
 
-    public JSONObject getJSONArray(){
-        HashMap<String, String> getAirlineList = new HashMap<>();
-
-        try {
-            URL url = new URL(urlString);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            System.out.println(conn + "?");
-            conn.setRequestMethod("GET");
-            conn.connect();
-
-            //Check if connect is made
-            int responseCode = conn.getResponseCode();
-            System.out.println(responseCode + "?");
-
-            if (responseCode != 200) {
-                throw new RuntimeException("HttpResponseCode: " + responseCode);
-            } else {
-
-                StringBuilder informationString = new StringBuilder();
-                Scanner scanner = new Scanner(url.openStream());
-
-                while (scanner.hasNext()) {
-                    removeNull = scanner.nextLine();
-                    informationString.append(removeNull.replaceAll("null", "0"));
-
-                }
-               // System.out.println(informationString);
-                scanner.close();
-
-                String actualData = informationString.substring(informationString.indexOf("["), informationString.lastIndexOf("]")+1);
-                JSONParser parse = new JSONParser();
-                dataObject = (JSONArray) parse.parse(actualData);
-
-
-                JSONObject aviationData = (JSONObject) dataObject.get(0);
-
-
-
-
-                return aviationData;
-
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     public JSONObject getJSONObject(String query){
         try {
