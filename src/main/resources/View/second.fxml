@@ -87,6 +87,7 @@
                   <SepiaTone />
                </effect>
             </Text>
+            <Label layoutX="135.0" layoutY="588.0" text="Label" />
             </children>
         </AnchorPane>
         <GridPane layoutX="136.0" layoutY="129.0" prefHeight="63.0" prefWidth="767.0">
@@ -221,7 +222,7 @@
                     <children>
 
                         <TextArea fx:id="arrDatas" layoutX="14.0" layoutY="61.0" prefHeight="200.0" prefWidth="417.0" />
-                        <Text fx:id="arrAirport" layoutX="104.0" layoutY="90.0" text="Destination" textAlignment="CENTER" wrappingWidth="253.00001525878906">
+                        <Text fx:id="arrAirport" fill="RED" layoutX="104.0" layoutY="90.0" text="Destination" textAlignment="CENTER" wrappingWidth="253.00001525878906">
                             <font>
                                 <Font name="Bodoni MT Bold" size="23.0" />
                             </font>
